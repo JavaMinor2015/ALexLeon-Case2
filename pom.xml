@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>GMS.Leon.Alex</groupId>
-    <artifactId>GMS</artifactId>
+    <artifactId>GMS.Leon.Alex</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
