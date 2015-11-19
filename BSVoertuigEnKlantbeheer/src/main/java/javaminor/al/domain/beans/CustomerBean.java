@@ -1,28 +1,22 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
-import javaminor.al.repository.CarRepository;
 import javaminor.al.repository.DriverRepository;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
 
-
 /**
- * Created by Leon Stam on 19-11-2015.
+ * Created by alex on 11/19/15.
  */
 @Stateful
 @Getter
 @Setter
-public class GmsBean implements Serializable {
-    private static final long serialVersionUID = 6942856895905488563L;
+public class CustomerBean implements Serializable {
 
-    @Inject
-    private CarRepository carRepository;
+    private static final long serialVersionUID = 473528075546619935L;
 
     @Inject
     private DriverRepository driverRepository;
-
-
 }

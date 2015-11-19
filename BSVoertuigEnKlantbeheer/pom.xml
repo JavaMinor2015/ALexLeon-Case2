@@ -13,12 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.1.2.Final</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.el</artifactId>
             <version>3.0.0</version>
@@ -39,6 +33,5 @@
             <artifactId>Domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
     </dependencies>
 </project>

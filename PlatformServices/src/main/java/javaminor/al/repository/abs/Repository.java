@@ -2,7 +2,6 @@ package javaminor.al.repository.abs;
 
 import java.util.ArrayList;
 import java.util.List;
-import javaminor.al.entities.abs.PersistentEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -22,7 +21,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public abstract class Repository<T extends PersistentEntity> {
+public abstract class Repository<T> {
 
     @PersistenceContext(unitName = "GMSDerbyPersist")
     private EntityManager em;

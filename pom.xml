@@ -14,6 +14,8 @@
         <module>BSVoertuigEnKlantbeheer</module>
         <module>ISRijksdienstWegverkeer</module>
         <module>Domain</module>
+        <module>BSOnderhoud</module>
+        <module>PlatformServices</module>
     </modules>
     <properties>
         <jackson.version>1.8.6</jackson.version>
