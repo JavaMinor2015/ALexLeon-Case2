@@ -69,4 +69,6 @@ findbugs-include.xml
 /BSVoertuigEnKlantbeheer/target/
 /ISRijksdienstWegverkeer/target/
 /PcSOnderhoud/target/
+/PlatformServices/target/
+/BSOnderhoud/target/
 findbugs-result.xml
