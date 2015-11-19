@@ -3,14 +3,29 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://butterfaces.larmic.de/components"
->
-    <ui:param name="title" value="Add Customer" />
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:param name="title" value="Add Customer"/>
     <ui:define name="content">
+
         <h:form id="formId">
+            <b:radioBox id="input"
+                        label="label"
+                        hideLabel="false"
+                        value="(item is null)"
+                        styleClass="null"
+                        readonly="false"
+                        required="false"
+                        disabled="false"
+                        layout="lineDirection"
+                        rendered="true">
+                <f:selectItem itemValue="Driver"
+                              itemLabel="Driver"/>
+            </b:radioBox>
             <b:text id="input"
-                    label="label"
+                    label="First Name"
                     hideLabel="false"
-                    value="woop"
+                    value="#{customer.driver.firstName}"
                     placeholder="Enter text..."
                     type="null"
                     pattern="null"
@@ -18,9 +33,28 @@
                     max="null"
                     styleClass="null"
                     readonly="false"
-                    required="false"
+                    required="true"
                     disabled="false"
-                    autoFocus="false"
+                    autoFocus="true"
+                    rendered="true">
+                <b:tooltip>
+                    tooltip
+                </b:tooltip>
+            </b:text>
+            <b:text id="input"
+                    label="Last Name"
+                    hideLabel="false"
+                    value="#{customer.driver.lastName}"
+                    placeholder="Enter text..."
+                    type="null"
+                    pattern="null"
+                    min="null"
+                    max="null"
+                    styleClass="null"
+                    readonly="false"
+                    required="true"
+                    disabled="false"
+                    autoFocus="true"
                     rendered="true">
                 <b:tooltip>
                     tooltip
