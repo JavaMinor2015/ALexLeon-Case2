@@ -1,12 +1,11 @@
 package domain.entities.concrete;
 
 import domain.entities.abs.PersistentEntity;
-import lombok.*;
-
+import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.util.Calendar;
+import lombok.*;
 
 /**
  * Created by Leon Stam on 19-11-2015.

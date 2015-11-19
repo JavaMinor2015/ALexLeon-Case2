@@ -2,14 +2,15 @@ package domain.entities.concrete;
 
 import business.Rules;
 import domain.entities.abs.Customer;
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
-import lombok.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Created by alex on 11/19/15.

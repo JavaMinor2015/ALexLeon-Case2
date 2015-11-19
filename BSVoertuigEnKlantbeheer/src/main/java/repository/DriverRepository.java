@@ -1,12 +1,10 @@
 package repository;
 
-import domain.entities.concrete.Car;
 import domain.entities.concrete.Driver;
-import repository.abs.Repository;
-
-import javax.ejb.Stateful;
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.Stateful;
+import repository.abs.Repository;
 
 /**
  * Created by alex on 11/10/15.

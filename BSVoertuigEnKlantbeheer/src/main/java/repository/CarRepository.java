@@ -1,14 +1,10 @@
 package repository;
 
 import domain.entities.concrete.Car;
-import repository.abs.Repository;
-
-import javax.ejb.Stateful;
-import javax.persistence.Query;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
+import javax.ejb.Stateful;
+import repository.abs.Repository;
 
 /**
  * Created by alex on 11/10/15.
@@ -21,6 +17,10 @@ public class CarRepository extends Repository<Car> implements Serializable {
     @Override
     public List<Car> getAll() {
         return getAll(Car.class);
+    }
+
+    public Car getById(final long id) {
+        return super.findById(Car.class, id);
     }
 
 }

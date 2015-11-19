@@ -2,13 +2,12 @@ package domain.entities.concrete;
 
 import business.Rules;
 import domain.entities.abs.PersistentEntity;
-import lombok.*;
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
-import java.util.List;
+import lombok.*;
 
 /**
  * Created by Leon Stam on 19-11-2015.

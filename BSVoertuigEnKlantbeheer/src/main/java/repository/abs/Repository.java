@@ -1,18 +1,17 @@
 package repository.abs;
 
 import domain.entities.abs.PersistentEntity;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by alex on 11/9/15.

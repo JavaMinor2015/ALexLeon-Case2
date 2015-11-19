@@ -2,12 +2,11 @@ package domain.entities.concrete;
 
 import business.MaintenanceStatus;
 import domain.entities.abs.PersistentEntity;
-import lombok.*;
-
-import javax.persistence.*;
-import javax.validation.constraints.Future;
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.Future;
+import lombok.*;
 
 /**
  * Created by Leon Stam on 19-11-2015.
@@ -28,6 +27,7 @@ public class MaintenanceAssignment extends PersistentEntity {
     private int mileage;
 
     private boolean apk;
+    
     private boolean spotCheck;
 
     private String problem;

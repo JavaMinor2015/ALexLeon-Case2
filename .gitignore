@@ -40,6 +40,7 @@ hs_err_pid*
 # .idea/mongoSettings.xml
 
 ## File-based project format:
+/BSVoertuigEnKlantbeheer/target/
 *.ipr
 *.iws
 
