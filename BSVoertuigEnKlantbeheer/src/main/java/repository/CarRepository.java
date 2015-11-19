@@ -19,6 +19,12 @@ public class CarRepository extends Repository<Car> implements Serializable {
         return getAll(Car.class);
     }
 
+    /**
+     * Retrieve a car by its id.
+     *
+     * @param id the id to find
+     * @return the corresponding car or null
+     */
     public Car getById(final long id) {
         return super.findById(Car.class, id);
     }
