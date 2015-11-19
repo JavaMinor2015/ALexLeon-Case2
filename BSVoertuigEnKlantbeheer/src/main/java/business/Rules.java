@@ -26,6 +26,13 @@ public final class Rules {
     public static final int COMPANY_NAME_MIN_LENGTH = 1;
     public static final int COMPANY_NAME_MAX_LENGTH = 100;
 
+    public static final int NUMBER_PLATE_MIN_LENGTH = 2;
+    public static final int NUMBER_PLATE_MAX_LENGTH = 10;
+    public static final int MODEL_MIN_LENGTH = 1;
+    public static final int MODEL_MAX_LENGTH = 50;
+    public static final int TYPE_MIN_LENGTH = 1;
+    public static final int TYPE_MAX_LENGTH = 50;
+
     /**
      * Regular Expressions.
      */

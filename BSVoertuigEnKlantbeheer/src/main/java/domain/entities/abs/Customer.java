@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 /**
  * Created by alex on 11/19/15.
  */
-public class Customer extends PersistentEntity {
+public abstract class Customer extends PersistentEntity {
 
     @Size(min = Rules.STREET_NAME_MIN_LENGTH, max = Rules.STREET_NAME_MAX_LENGTH)
     private String streetName;

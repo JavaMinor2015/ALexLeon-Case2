@@ -19,4 +19,5 @@ public class LeaseCompany extends Customer {
 
     @Size(min = Rules.COMPANY_NAME_MIN_LENGTH, max = Rules.COMPANY_NAME_MAX_LENGTH)
     private String name;
+
 }
