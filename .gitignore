@@ -63,3 +63,7 @@ crashlytics-build.properties
 # Created by .ignore support plugin (hsz.mobi)
 
 sonar-project.properties
+checkstyle.xml
+findbugs-include.xml
+/FEGarageManagementSysteem/target/
+findbugs-result.xml
