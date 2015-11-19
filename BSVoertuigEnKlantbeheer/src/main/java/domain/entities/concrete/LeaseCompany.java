@@ -14,7 +14,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class LeaseCompany extends Customer {
     private static final long serialVersionUID = -2194603534759142127L;
 

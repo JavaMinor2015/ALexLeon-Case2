@@ -15,14 +15,7 @@ public class ZipCodeValidator implements ConstraintValidator<ValidZipCode, Strin
     @Override
     public void initialize(final ValidZipCode validZipCode) {
         validPatterns = new ArrayList<>();
-
-        // UK pattern
-        validPatterns.add("(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|("
-                + "([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|"
-                + "([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY])))) [0-9][A-Z-[CIKMOV]]{2})");
-
-        // NL pattern
-        validPatterns.add("/^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/");
+        validPatterns.add("^[1-9][0-9]{3}\\s?[a-zA-Z]{2}$");
     }
 
     @Override

@@ -19,7 +19,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Driver extends Customer {
     private static final long serialVersionUID = 1307990296574264319L;
 

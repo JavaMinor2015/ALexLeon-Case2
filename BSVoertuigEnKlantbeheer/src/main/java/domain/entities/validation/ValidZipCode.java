@@ -43,8 +43,10 @@ public @interface ValidZipCode {
      * A list?.
      */
     @Target({
+            ElementType.METHOD,
             ElementType.FIELD,
             ElementType.ANNOTATION_TYPE,
+            ElementType.CONSTRUCTOR,
             ElementType.PARAMETER})
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
