@@ -16,6 +16,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class LeaseCompany extends Customer {
+    private static final long serialVersionUID = -2194603534759142127L;
 
     @Size(min = Rules.COMPANY_NAME_MIN_LENGTH, max = Rules.COMPANY_NAME_MAX_LENGTH)
     private String name;

@@ -7,11 +7,13 @@ import javax.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * Created by alex on 11/19/15.
  */
 @MappedSuperclass
-public abstract class PersistentEntity {
+public abstract class PersistentEntity implements Serializable {
 
     @Getter
     @Setter

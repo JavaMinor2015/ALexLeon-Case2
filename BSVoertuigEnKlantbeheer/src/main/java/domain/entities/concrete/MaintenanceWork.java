@@ -18,6 +18,7 @@ import java.util.Calendar;
 @NoArgsConstructor
 @Builder
 public class MaintenanceWork extends PersistentEntity {
+    private static final long serialVersionUID = -6671470658970621897L;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar startedOn;

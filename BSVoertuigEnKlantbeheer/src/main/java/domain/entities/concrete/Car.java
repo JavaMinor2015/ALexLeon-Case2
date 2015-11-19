@@ -20,6 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Car extends PersistentEntity {
+    private static final long serialVersionUID = 5102067162211765503L;
 
     @Size(min = Rules.NUMBER_PLATE_MIN_LENGTH, max = Rules.NUMBER_PLATE_MAX_LENGTH)
     private String numberPlate;

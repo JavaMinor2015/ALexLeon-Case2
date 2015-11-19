@@ -1,5 +1,6 @@
 package domain.entities.concrete;
 
+import business.MaintenanceStatus;
 import domain.entities.abs.PersistentEntity;
 import lombok.*;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class MaintenanceAssignment extends PersistentEntity {
+    private static final long serialVersionUID = 2243631662528928856L;
 
     @Future
     @Temporal(TemporalType.TIMESTAMP)
@@ -29,6 +31,8 @@ public class MaintenanceAssignment extends PersistentEntity {
     private boolean spotCheck;
 
     private String problem;
+
+    private MaintenanceStatus status;
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<MaintenanceWork> executedWork;

@@ -21,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Driver extends Customer {
+    private static final long serialVersionUID = 1307990296574264319L;
 
     @Size(min = Rules.FIRST_NAME_MIN_LENGTH, max = Rules.FIRST_NAME_MAX_LENGTH)
     private String firstName;
