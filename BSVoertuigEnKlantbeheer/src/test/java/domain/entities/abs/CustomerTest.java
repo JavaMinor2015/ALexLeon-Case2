@@ -1,13 +1,14 @@
 package domain.entities.abs;
 
+import business.Rules;
 import java.util.Set;
 import javax.validation.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import util.StrUtil;
 
-import static org.eclipse.persistence.jpa.jpql.Assert.fail;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -18,12 +19,10 @@ public class CustomerTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private Customer customer;
     private Validator validator;
 
     @Before
     public void setUp() throws Exception {
-        customer = new Customer();
         ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
         this.validator = vf.getValidator();
     }
@@ -44,74 +43,71 @@ public class CustomerTest {
 
     @Test
     public void testStreetInvalid() {
-        Customer invalidStreet = Customer.vb
+        Customer invalidStreet = Customer.builder()
+                .streetName("")
+                .build();
+        assertViolation(invalidStreet);
+
+        invalidStreet = Customer.builder()
+                .streetName(null)
+                .build();
+        assertViolation(invalidStreet);
+
+        invalidStreet = Customer.builder()
+                .streetName(StrUtil.getRandomString(Rules.STREET_NAME_MAX_LENGTH + 1))
+                .build();
+        assertViolation(invalidStreet);
     }
 
     @Test
     public void testNumberInvalid() {
-        String[] invalids = new String[]{null, "", "asdasda"};
+        String[] invalids = new String[]{null, "", StrUtil.getRandomString(Rules.STREET_NUMBER_MAX_LENGTH + 1)};
         for (String invalid : invalids) {
-            try {
-                customer.setNumber(invalid);
-                fail("Exception expected in testNumberInvalid()");
-            } catch (Exception e) {
-                // success
-            }
+            Customer invalidCustomer = Customer.builder().number(invalid).build();
+            assertViolation(invalidCustomer);
         }
     }
 
     @Test
     public void testZipCodeInvalid() {
-        // TODO use validationfactory?
-        customer.setZipCode(null);
+        String[] invalids = new String[]{null, "", "564a6d4a9s8d49a8s4d"};
+        for (String invalid : invalids) {
+            Customer invalidCustomer = Customer.builder().zipCode(invalid).build();
+            assertViolation(invalidCustomer);
+        }
     }
-
 
     @Test
     public void testCityInvalid() {
-        String[] invalids = new String[]{null, "",
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                        + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                        + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"};
+        String[] invalids = new String[]{null, "", StrUtil.getRandomString(Rules.CITY_MAX_LENGTH + 1)};
         for (String invalid : invalids) {
-            try {
-                customer.setCity(invalid);
-                fail("Exception expected in testCityInvalid()");
-            } catch (Exception e) {
-                // success
-            }
+            Customer invalidCustomer = Customer.builder().city(invalid).build();
+            assertViolation(invalidCustomer);
         }
     }
 
 
     @Test
     public void testPhoneInvalid() {
-        String[] invalids = new String[]{null, "", "12345678",
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"};
+        String[] invalids = new String[]{null, "", StrUtil.getRandomString(Rules.PHONE_NUMBER_MAX_LENGTH + 1)};
         for (String invalid : invalids) {
-            try {
-                customer.setPhone(invalid);
-                fail("Exception expected for string: " + invalid + " in testPhoneInvalid()");
-            } catch (Exception e) {
-                // success
-            }
+            Customer invalidCustomer = Customer.builder().phone(invalid).build();
+            assertViolation(invalidCustomer);
         }
     }
 
     @Test
-    public void testEmailValid() {
-        customer.setEmail("me@company.com");
-    }
-
-    @Test
     public void testEmailInvalid() {
-        // TODO use validationfactory?
-        customer.setEmail("invalid");
+        String[] invalids = new String[]{null, "", "me@my"};
+        for (String invalid : invalids) {
+            Customer invalidCustomer = Customer.builder().email(invalid).build();
+            assertViolation(invalidCustomer);
+        }
     }
 
     @Test
     public void testBuilder() throws Exception {
-        Customer customer = Customer.builder()
+        Customer.builder()
                 .city("Dordrecht")
                 .email("me@companu.com")
                 .number("5A")
@@ -122,8 +118,8 @@ public class CustomerTest {
         // no validation exceptions should be thrown
     }
 
-    private void assertHasOneViolation(final Customer customer) {
-        Set<ConstraintViolation<Customer>> violations = this.validator.validate(customer);
-        assertTrue(violations.size() == 1);
+    private void assertViolation(final Customer customer) {
+        thrown.expect(ValidationException.class);
+        this.validator.validate(customer);
     }
 }

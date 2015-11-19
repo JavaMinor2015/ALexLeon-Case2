@@ -64,4 +64,5 @@ crashlytics-build.properties
 sonar-project.properties
 checkstyle.xml
 findbugs-include.xml
+/FEGarageManagementSysteem/target/
 findbugs-result.xml
