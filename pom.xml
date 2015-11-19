@@ -13,6 +13,7 @@
         <module>PcSOnderhoud</module>
         <module>BSVoertuigEnKlantbeheer</module>
         <module>ISRijksdienstWegverkeer</module>
+        <module>Domain</module>
     </modules>
     <properties>
         <jackson.version>1.8.6</jackson.version>

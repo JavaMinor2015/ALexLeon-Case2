@@ -66,4 +66,7 @@ sonar-project.properties
 checkstyle.xml
 findbugs-include.xml
 /FEGarageManagementSysteem/target/
+/BSVoertuigEnKlantbeheer/target/
+/ISRijksdienstWegverkeer/target/
+/PcSOnderhoud/target/
 findbugs-result.xml
