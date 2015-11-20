@@ -22,6 +22,11 @@ public class CustomerBean implements Serializable {
     @EJB
     private DriverRepository driverRepository;
 
+    /**
+     * Add a customer to the repository and persist.
+     *
+     * @param customer the customer to persist
+     */
     public void createCustomer(final Customer customer) {
         if (customer instanceof Driver) {
             driverRepository.add((Driver) customer);

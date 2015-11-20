@@ -13,7 +13,7 @@
 </composite:interface>
 <!--Implementation for a butterface input text field interface-->
 <composite:implementation>
-    <b:text id="input"
+    <b:text id="#{cc.id}"
             label="#{cc.attrs.label}"
             hideLabel="false"
             value="#{cc.attrs.value}"
@@ -28,6 +28,11 @@
             disabled="false"
             autoFocus="true"
             rendered="true">
+        <h:message for="#{cc.id}"
+                   errorClass="alert-danger"
+                   fatalClass="alert-danger"
+                   infoClass="alert-info"
+                   warnClass="alert-warning"/>
     </b:text>
 </composite:implementation>
 </html>

@@ -12,6 +12,8 @@ import javax.inject.Named;
 import javax.validation.ConstraintViolationException;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * Created by alex on 11/19/15.
@@ -22,7 +24,10 @@ import lombok.Setter;
 @Setter
 public class CustomerManagedBean implements Serializable {
     private static final long serialVersionUID = 8020406095868256398L;
+    private static final Logger LOGGER = LogManager.getLogger
+            (CustomerManagedBean.class.getName());
 
+    //TODO refactor to proper Customer with Driver/LeaseCompany option
     private Driver driver;
 
     @EJB
@@ -36,11 +41,20 @@ public class CustomerManagedBean implements Serializable {
         driver = new Driver();
     }
 
+    /**
+     * Persist the customer.
+     */
     public void createCustomer() {
         try {
             bean.createCustomer(driver);
-        }catch (ConstraintViolationException e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getConstraintViolations().toString()));
+        } catch (ConstraintViolationException e) {
+            // TODO does this even work?
+            FacesContext.getCurrentInstance().addMessage(null, new
+                    FacesMessage(e.getConstraintViolations().toString()));
+            LOGGER.warn(e.getMessage(), e);
         }
+
+        FacesContext.getCurrentInstance().addMessage("addCustomer:customerCreateBtn", new
+                FacesMessage("Added customer: " + driver.getFirstName()));
     }
 }

@@ -14,6 +14,8 @@ import lombok.Setter;
 @MappedSuperclass
 public abstract class PersistentEntity implements Serializable {
 
+    private static final long serialVersionUID = 2731951438060507474L;
+    
     @Getter
     @Setter
     @Id

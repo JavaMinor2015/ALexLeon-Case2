@@ -19,6 +19,8 @@ import lombok.*;
 @MappedSuperclass
 public class Customer extends PersistentEntity {
 
+    private static final long serialVersionUID = -497733668654929364L;
+
     @Size(min = Rules.STREET_NAME_MIN_LENGTH, max = Rules.STREET_NAME_MAX_LENGTH)
     @NotNull
     private String streetName;
