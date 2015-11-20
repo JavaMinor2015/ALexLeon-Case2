@@ -4,10 +4,12 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://butterfaces.larmic.de/components"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components">
+    <bInputText:ButterfaceInputText/>
     <ui:param name="title" value="Add Customer"/>
     <ui:define name="content">
-
         <h:form id="formId">
             <b:radioBox id="input"
                         label="label"
@@ -22,44 +24,45 @@
                 <f:selectItem itemValue="Driver"
                               itemLabel="Driver"/>
             </b:radioBox>
-            <b:text id="input"
+            <bInputText:ButterfaceInputText
                     label="First Name"
-                    hideLabel="false"
-                    value="#{customer.driver.firstName}"
-                    placeholder="Enter text..."
-                    type="null"
-                    pattern="null"
-                    min="null"
-                    max="null"
-                    styleClass="null"
-                    readonly="false"
-                    required="true"
-                    disabled="false"
-                    autoFocus="true"
-                    rendered="true">
-                <b:tooltip>
-                    tooltip
-                </b:tooltip>
-            </b:text>
-            <b:text id="input"
+                    placeholder="Enter first name..."
+                    value="#{customer.driver.firstName}"/>
+            <bInputText:ButterfaceInputText
+                    label="Insertion"
+                    placeholder="Enter insertions..."
+                    value="#{customer.driver.insertion}"
+                    required="false"/>
+            <bInputText:ButterfaceInputText
                     label="Last Name"
-                    hideLabel="false"
-                    value="#{customer.driver.lastName}"
-                    placeholder="Enter text..."
-                    type="null"
-                    pattern="null"
-                    min="null"
-                    max="null"
-                    styleClass="null"
-                    readonly="false"
-                    required="true"
-                    disabled="false"
-                    autoFocus="true"
-                    rendered="true">
-                <b:tooltip>
-                    tooltip
-                </b:tooltip>
-            </b:text>
+                    placeholder="Enter last name..."
+                    value="#{customer.driver.lastName}"/>
+            <bInputText:ButterfaceInputText
+                    label="Email"
+                    placeholder="Enter email..."
+                    value="#{customer.driver.email}"/>
+            <bInputText:ButterfaceInputText
+                    label="City"
+                    placeholder="Enter city..."
+                    value="#{customer.driver.city}"/>
+            <bInputText:ButterfaceInputText
+                    label="Zip Code"
+                    placeholder="Enter zip code..."
+                    value="#{customer.driver.zipCode}"/>
+            <bInputText:ButterfaceInputText
+                    label="Street"
+                    placeholder="Enter street..."
+                    value="#{customer.driver.streetName}"/>
+            <bInputText:ButterfaceInputText
+                    label="Number"
+                    placeholder="Enter number..."
+                    value="#{customer.driver.number}"/>
+            <bInputText:ButterfaceInputText
+                    label="Phone"
+                    placeholder="Enter phone..."
+                    value="#{customer.driver.phone}"/>
+            <h:commandButton type="submit" value="Create" action="#{customer.createCustomer}"/>
         </h:form>
+        <h:messages errorStyle="color:red" />
     </ui:define>
 </ui:composition>

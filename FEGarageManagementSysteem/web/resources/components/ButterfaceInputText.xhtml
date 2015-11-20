@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:b="http://butterfaces.larmic.de/components">
+<!--Interface for a butterface input text field-->
+<composite:interface name="input">
+    <composite:attribute name="label"/>
+    <composite:attribute name="value"/>
+    <composite:attribute name="placeholder"/>
+    <composite:attribute name="required" default="true"/>
+</composite:interface>
+<!--Implementation for a butterface input text field interface-->
+<composite:implementation>
+    <b:text id="input"
+            label="#{cc.attrs.label}"
+            hideLabel="false"
+            value="#{cc.attrs.value}"
+            placeholder="#{cc.attrs.placeholder}"
+            type="null"
+            pattern="null"
+            min="null"
+            max="null"
+            styleClass="null"
+            readonly="false"
+            required="#{cc.attrs.required}"
+            disabled="false"
+            autoFocus="true"
+            rendered="true">
+    </b:text>
+</composite:implementation>
+</html>

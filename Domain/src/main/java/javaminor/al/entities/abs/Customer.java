@@ -2,6 +2,7 @@ package javaminor.al.entities.abs;
 
 import javaminor.al.business.Rules;
 import javaminor.al.entities.validation.ValidZipCode;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -15,6 +16,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@MappedSuperclass
 public class Customer extends PersistentEntity {
 
     @Size(min = Rules.STREET_NAME_MIN_LENGTH, max = Rules.STREET_NAME_MAX_LENGTH)

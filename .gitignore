@@ -72,3 +72,4 @@ findbugs-include.xml
 /PlatformServices/target/
 /BSOnderhoud/target/
 findbugs-result.xml
+.sonar/.sonartmp/caches/persistit_tempvol_5060538790714628395.tmp
