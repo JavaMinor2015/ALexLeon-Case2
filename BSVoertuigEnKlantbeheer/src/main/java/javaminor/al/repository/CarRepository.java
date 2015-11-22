@@ -5,6 +5,10 @@ import java.util.List;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.repository.abs.Repository;
 import javax.ejb.Stateful;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  * Created by alex on 11/10/15.
@@ -29,4 +33,23 @@ public class CarRepository extends Repository<Car> implements Serializable {
         return super.findById(Car.class, id);
     }
 
+    /**
+     * Retrieve a car by its license plate.
+     *
+     * @param plateNumber the plate to find
+     * @return the corresponding car or null
+     */
+    public Car findByPlate(final String plateNumber) {
+        // TODO better naming
+        Car response;
+        CriteriaBuilder cb = getEm().getCriteriaBuilder();
+        CriteriaQuery<Car> cq = cb.createQuery(Car.class);
+        Root<Car> root = cq.from(Car.class);
+        cq.where(
+                cb.equal(root.get("numberPlate"), plateNumber)
+        );
+        TypedQuery<Car> q = getEm().createQuery(cq);
+        response = q.getSingleResult();
+        return response;
+    }
 }

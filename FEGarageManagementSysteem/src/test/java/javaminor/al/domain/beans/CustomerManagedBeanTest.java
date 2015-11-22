@@ -1,7 +1,6 @@
-package javaminor.al.beans;
+package javaminor.al.domain.beans;
 
 import java.util.*;
-import javaminor.al.domain.beans.CustomerBean;
 import javaminor.al.entities.abs.Customer;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.Driver;
