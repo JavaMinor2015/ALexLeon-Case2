@@ -15,7 +15,7 @@ import lombok.Setter;
 /**
  * Created by alex on 11/9/15.
  * <p>
- * An abstract javaminor.al.repository which manages PersistentEntity's.
+ * An abstract repository which manages PersistentEntity's.
  *
  * @param <T> the generic type.
  */
@@ -35,15 +35,15 @@ public abstract class Repository<T> {
     public abstract List<T> getAll();
 
     /**
-     * Persist all items in this javaminor.al.repository.
+     * Persist all items in this repository.
      */
     public void save() {
-        itemList.forEach(getEm()::persist);
+        itemList.forEach(getEm()::merge);
         getEm().flush();
     }
 
     /**
-     * Add an item to this javaminor.al.repository.
+     * Add an item to this repository.
      * <p>
      * Note: call {@link #save()} to persist added items.
      *

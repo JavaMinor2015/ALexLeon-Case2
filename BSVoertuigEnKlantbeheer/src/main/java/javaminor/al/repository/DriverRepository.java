@@ -19,4 +19,13 @@ public class DriverRepository extends Repository<Driver> implements Serializable
         return getAll(Driver.class);
     }
 
+    /**
+     * Retrieve a driver by its id.
+     *
+     * @param id the id to find
+     * @return the corresponding driver or null
+     */
+    public Driver getById(final long id) {
+        return super.findById(Driver.class, id);
+    }
 }
