@@ -1,10 +1,9 @@
 package javaminor.al.beans;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 import javaminor.al.domain.beans.CustomerBean;
 import javaminor.al.entities.abs.Customer;
+import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.Driver;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -30,21 +29,30 @@ public class CustomerManagedBeanTest {
 
     private CustomerBean mockedBean;
     private Driver mockedDriver;
+    private Car mockedCar;
+    private List<Car> carList;
     private CustomerManagedBean customerManagedBean;
     private FacesContext context;
 
+    /**
+     * @see MockFacesContext
+     */
     @Before
     public void setUp() {
         mockedBean = mock(CustomerBean.class);
         mockedDriver = mock(Driver.class);
+        mockedCar = mock(Car.class);
+        carList = new ArrayList<>();
+        carList.add(mockedCar);
         customerManagedBean = new CustomerManagedBean();
         customerManagedBean.init();
         customerManagedBean.setBean(mockedBean);
         customerManagedBean.setDriver(mockedDriver);
+        customerManagedBean.setCar(mockedCar);
 
         assertThat(customerManagedBean.getDriver(), is(mockedDriver));
         assertThat(customerManagedBean.getBean(), is(mockedBean));
-
+        assertThat(customerManagedBean.getCar(), is(mockedCar));
         // oh yes, we're going there
         context = MockFacesContext.mockFacesContext();
         Map<String, Object> session = new HashMap<>();
@@ -71,5 +79,14 @@ public class CustomerManagedBeanTest {
 
         // exception should be caught
         customerManagedBean.createCustomer();
+    }
+
+    @Test
+    public void testAddCar() throws Exception {
+        // driver has not been properly created yet
+        assertThat(customerManagedBean.addCar(), is("addCustomer"));
+
+        when(mockedDriver.getFirstName()).thenReturn("John");
+        assertThat(customerManagedBean.addCar(), is("index"));
     }
 }

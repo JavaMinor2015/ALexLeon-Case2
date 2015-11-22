@@ -47,4 +47,11 @@ public class CustomerBeanTest {
         customerBean.createCustomer(new Driver());
         customerBean.createCustomer(new Customer());
     }
+
+    @Test
+    public void testRefresh() throws Exception {
+        doNothing().when(mockDriverRepository).save();
+        // no exceptions
+        customerBean.refresh();
+    }
 }
