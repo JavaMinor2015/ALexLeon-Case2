@@ -10,7 +10,7 @@
     <ui:define name="content">
         <h:form id="addOrder">
             <!--ensure a fresh input field-->
-            #{order.init}
+            #{order.init()}
             <bInputText:ButterfaceInputText
                     identifier="carId"
                     label="Car plate"

@@ -40,7 +40,7 @@ public class CarRepository extends Repository<Car> implements Serializable {
      * @return the corresponding car or null
      */
     public Car findByPlate(final String plateNumber) {
-        // TODO better naming
+        // TODO better naming, and fix multiresult
         Car response;
         CriteriaBuilder cb = getEm().getCriteriaBuilder();
         CriteriaQuery<Car> cq = cb.createQuery(Car.class);
@@ -50,6 +50,8 @@ public class CarRepository extends Repository<Car> implements Serializable {
         );
         TypedQuery<Car> q = getEm().createQuery(cq);
         response = q.getSingleResult();
+        getItemList().clear();
+        getItemList().add(response);
         return response;
     }
 }
