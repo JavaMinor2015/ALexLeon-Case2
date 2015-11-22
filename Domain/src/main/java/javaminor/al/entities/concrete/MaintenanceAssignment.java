@@ -27,7 +27,7 @@ public class MaintenanceAssignment extends PersistentEntity {
     private int mileage;
 
     private boolean apk;
-    
+
     private boolean spotCheck;
 
     private String problem;

@@ -8,7 +8,7 @@ import org.mockito.stubbing.Answer;
 
 /**
  * Created by alex on 11/22/15.
- * <p/>
+ * <p>
  * http://illegalargumentexception.blogspot
  * .nl/2011/12/jsf-mocking-facescontext-for-unit-tests
  * .html#mockFacesCurrentInstance

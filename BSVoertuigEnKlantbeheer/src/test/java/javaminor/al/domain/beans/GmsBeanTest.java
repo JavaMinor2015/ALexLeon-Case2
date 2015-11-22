@@ -5,6 +5,5 @@ package javaminor.al.domain.beans;
  */
 public class GmsBeanTest {
 
-    
 
 }

@@ -39,7 +39,7 @@ public class DriverTest {
         driver.setLastName("Doe");
         // no validation exceptions should be thrown
 
-        driver = new Driver("John","of","Doe",null);
+        driver = new Driver("John", "of", "Doe", null);
 
         assertThat(driver.getFirstName(), is("John"));
         assertThat(driver.getInsertion(), is("of"));
