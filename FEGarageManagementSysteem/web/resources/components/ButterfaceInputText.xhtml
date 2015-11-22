@@ -4,6 +4,7 @@
       xmlns:b="http://butterfaces.larmic.de/components">
 <!--Interface for a butterface input text field-->
 <composite:interface name="input">
+    <composite:attribute name="identifier" default="#{cc.id}"/>
     <composite:attribute name="label"/>
     <composite:attribute name="value"/>
     <composite:attribute name="placeholder"/>
@@ -11,7 +12,7 @@
 </composite:interface>
 <!--Implementation for a butterface input text field interface-->
 <composite:implementation>
-    <b:text id="#{cc.id}"
+    <b:text id="#{cc.attrs.identifier}"
             label="#{cc.attrs.label}"
             hideLabel="false"
             value="#{cc.attrs.value}"
