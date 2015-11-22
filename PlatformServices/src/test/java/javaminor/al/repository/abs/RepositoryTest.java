@@ -25,7 +25,7 @@ public class RepositoryTest {
 
     private EntityManager mockManager;
 
-    private static final String TEST_STRING =  "Help me, I'm trapped in a repository!";
+    private static final String TEST_STRING = "Help me, I'm trapped in a repository!";
     private Root<String> mockRoot;
     private List<String> stringList;
 

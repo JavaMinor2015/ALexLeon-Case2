@@ -25,8 +25,7 @@ import org.apache.log4j.Logger;
 @Setter
 public class OrderManagedBean implements Serializable {
     private static final long serialVersionUID = -4720067158883460744L;
-    private static final Logger LOGGER = LogManager.getLogger
-            (OrderManagedBean.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(OrderManagedBean.class.getName());
 
     @EJB
     private MaintenanceBean maintenanceBean;
@@ -66,7 +65,7 @@ public class OrderManagedBean implements Serializable {
             return "addOrder";
         }
 
-        if(car.getAssignments() == null) {
+        if (car.getAssignments() == null) {
             car.setAssignments(new ArrayList<>());
         }
 

@@ -8,12 +8,16 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * Created by alex on 11/22/15.
  */
 @FacesConverter("javaminor.al.util.CalendarConverter")
 public class CalendarConverter implements Converter {
+
+    private static final Logger LOGGER = LogManager.getLogger(CalendarConverter.class.getName());
 
     // hoofdletter M *zucht*
     private static final String DATE_FORMAT = "dd-MM-yyyy HH:mm";
@@ -38,7 +42,7 @@ public class CalendarConverter implements Converter {
             calendar.setTime(sdf.parse(dateString));
         } catch (ParseException e) {
             // ehm.. panic?
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
         return calendar;
     }

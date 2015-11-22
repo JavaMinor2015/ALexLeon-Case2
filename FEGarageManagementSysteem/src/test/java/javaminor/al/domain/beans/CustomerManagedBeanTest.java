@@ -86,6 +86,6 @@ public class CustomerManagedBeanTest {
         assertThat(customerManagedBean.addCar(), is("addCustomer"));
 
         when(mockedDriver.getFirstName()).thenReturn("John");
-        assertThat(customerManagedBean.addCar(), is("index"));
+        assertThat(customerManagedBean.addCar(), is("addOrder"));
     }
 }
