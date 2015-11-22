@@ -69,4 +69,9 @@ findbugs-include.xml
 /BSVoertuigEnKlantbeheer/target/
 /ISRijksdienstWegverkeer/target/
 /PcSOnderhoud/target/
+/PlatformServices/target/
+/BSOnderhoud/target/
+/Domain/target/
+/target/
 findbugs-result.xml
+.sonar/
