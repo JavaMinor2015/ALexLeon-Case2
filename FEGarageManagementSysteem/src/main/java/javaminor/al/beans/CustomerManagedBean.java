@@ -1,6 +1,7 @@
 package javaminor.al.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javaminor.al.domain.beans.CustomerBean;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.Driver;
@@ -41,6 +42,7 @@ public class CustomerManagedBean implements Serializable {
     @PostConstruct
     public void init() {
         driver = new Driver();
+        driver.setCars(new ArrayList<>());
         car = new Car();
     }
 
@@ -71,11 +73,13 @@ public class CustomerManagedBean implements Serializable {
      * @return the next page in the process.
      */
     public String addCar() {
-        if(driver.getFirstName() == null) {
+        if (driver.getFirstName() == null) {
             FacesContext.getCurrentInstance().addMessage("addCustomer:customerCreateBtn", new
                     FacesMessage("Create a customer first"));
             return "addCustomer";
         }
+        driver.getCars().add(car);
+        bean.refresh();
         FacesContext.getCurrentInstance().addMessage("addCar:carCreateBtn", new
                 FacesMessage("Added car: " + car.getModel()));
         return "index";
