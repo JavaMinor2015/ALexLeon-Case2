@@ -24,8 +24,7 @@ import org.apache.log4j.Logger;
 @Setter
 public class CustomerManagedBean implements Serializable {
     private static final long serialVersionUID = 8020406095868256398L;
-    private static final Logger LOGGER = LogManager.getLogger
-            (CustomerManagedBean.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(CustomerManagedBean.class.getName());
 
     //TODO refactor to proper Customer with Driver/LeaseCompany option
     private Driver driver;
