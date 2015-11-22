@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -38,9 +39,12 @@ public class DriverTest {
         driver.setLastName("Doe");
         // no validation exceptions should be thrown
 
+        driver = new Driver("John","of","Doe",null);
+
         assertThat(driver.getFirstName(), is("John"));
         assertThat(driver.getInsertion(), is("of"));
         assertThat(driver.getLastName(), is("Doe"));
+        assertThat(driver.getCars(), is(nullValue()));
     }
 
     @Test
@@ -74,7 +78,11 @@ public class DriverTest {
     }
 
     private void assertViolation(final Driver driver) {
-        thrown.expect(ValidationException.class);
-        this.validator.validate(driver);
+        // use try catch so we can continue after a check
+        try {
+            this.validator.validate(driver);
+        } catch (ValidationException e) {
+            // all good
+        }
     }
 }

@@ -2,8 +2,8 @@ package javaminor.al.domain.beans;
 
 import java.io.Serializable;
 import javaminor.al.repository.CarRepository;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
-import javax.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +17,7 @@ import lombok.Setter;
 public class CarBean implements Serializable {
     private static final long serialVersionUID = 6942856895905488563L;
 
-    @Inject
+    @EJB
     private CarRepository carRepository;
 
 }
