@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javaminor.al.entities.concrete.Car;
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -70,5 +71,16 @@ public class CarRepositoryTest {
     public void testSave() throws Exception {
         carRepository.save();
         // no exception thrown
+    }
+
+    @Test
+    public void testFindByPlate() {
+        when(mockTypedQuery.getSingleResult())
+                .thenReturn(carList.get(0))
+                .thenThrow(NonUniqueResultException.class);
+        assertThat(carRepository.findByPlate("woop"), is(carList.get(0)));
+
+        when(mockTypedQuery.getResultList()).thenReturn(carList);
+        assertThat(carRepository.findByPlate("woop"), is(carList.get(0)));
     }
 }
