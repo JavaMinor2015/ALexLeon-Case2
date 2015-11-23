@@ -3,6 +3,7 @@ package javaminor.al.entities.concrete;
 import java.util.Calendar;
 import javaminor.al.entities.abs.PersistentEntity;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.*;
@@ -28,4 +29,7 @@ public class MaintenanceWork extends PersistentEntity {
     private int workHours;
 
     private String comments;
+
+    @ManyToOne
+    private MaintenanceAssignment assignment;
 }

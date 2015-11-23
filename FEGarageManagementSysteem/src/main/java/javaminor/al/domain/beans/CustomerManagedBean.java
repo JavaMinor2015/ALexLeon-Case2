@@ -78,6 +78,7 @@ public class CustomerManagedBean implements Serializable {
             return "addCustomer";
         }
         driver.getCars().add(car);
+        car.setDriver(driver);
         bean.refresh();
         FacesContext.getCurrentInstance().addMessage("addCar:carCreateBtn", new
                 FacesMessage("Added car: " + car.getModel()));

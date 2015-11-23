@@ -34,11 +34,10 @@ public class MaintenanceAssignment extends PersistentEntity {
 
     private MaintenanceStatus status;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "assignment")
     private List<MaintenanceWork> executedWork;
 
     @ManyToOne
-    @JoinColumn(name = "car_id")
     private Car car;
 
 }
