@@ -15,7 +15,7 @@ import lombok.Setter;
 /**
  * Created by alex on 11/9/15.
  * <p>
- * An abstract javaminor.al.repository which manages PersistentEntity's.
+ * An abstract repository which manages PersistentEntity's.
  *
  * @param <T> the generic type.
  */
@@ -35,21 +35,31 @@ public abstract class Repository<T> {
     public abstract List<T> getAll();
 
     /**
-     * Persist all items in this javaminor.al.repository.
+     * Persist all items in this repository.
      */
     public void save() {
-        itemList.forEach(getEm()::persist);
-        getEm().flush();
+        itemList.forEach(em::persist);
+        em.flush();
     }
 
     /**
-     * Add an item to this javaminor.al.repository.
+     * Update all items in this repository.
+     */
+    public void update() {
+        itemList.forEach(em::merge);
+        em.flush();
+    }
+
+    /**
+     * Add an item to this repository.
      * <p>
      * Note: call {@link #save()} to persist added items.
      *
      * @param item the item to add.
      */
     public void add(final T item) {
+        em.persist(item);
+        itemList.clear();
         itemList.add(item);
     }
 
@@ -67,6 +77,7 @@ public abstract class Repository<T> {
         cq.select(t);
         TypedQuery<T> q = em.createQuery(cq);
         response = q.getResultList();
+        itemList = response;
         return response;
     }
 
@@ -86,6 +97,9 @@ public abstract class Repository<T> {
                 cb.equal(root.get("id"), idToFind)
         );
         TypedQuery<T> q = em.createQuery(cq);
-        return q.getSingleResult();
+        T response = q.getSingleResult();
+        itemList.clear();
+        itemList.add(response);
+        return response;
     }
 }

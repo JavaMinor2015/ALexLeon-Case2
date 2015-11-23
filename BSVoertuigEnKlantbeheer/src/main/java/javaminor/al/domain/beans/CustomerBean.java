@@ -33,4 +33,11 @@ public class CustomerBean implements Serializable {
             driverRepository.save();
         }
     }
+
+    /**
+     * Call to ensure fresh data.
+     */
+    public void refresh() {
+        driverRepository.update();
+    }
 }

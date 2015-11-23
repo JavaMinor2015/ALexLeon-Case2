@@ -27,7 +27,7 @@ public class MaintenanceAssignment extends PersistentEntity {
     private int mileage;
 
     private boolean apk;
-    
+
     private boolean spotCheck;
 
     private String problem;
@@ -36,8 +36,5 @@ public class MaintenanceAssignment extends PersistentEntity {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<MaintenanceWork> executedWork;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private Car car;
 
 }

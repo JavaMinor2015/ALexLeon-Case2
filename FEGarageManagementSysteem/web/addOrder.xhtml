@@ -1,0 +1,64 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components"
+                xmlns:b="http://butterfaces.larmic.de/components">
+    <bInputText:ButterfaceInputText/>
+    <ui:param name="title" value="Add Order"/>
+    <ui:define name="content">
+        <h:form id="addOrder">
+            <!--ensure a fresh input field-->
+            #{order.init()}
+            <bInputText:ButterfaceInputText
+                    identifier="carId"
+                    label="Car plate"
+                    value="#{customer.car.numberPlate}"
+                    disabled="true"
+            />
+            <bInputText:ButterfaceInputText
+                    identifier="problem"
+                    label="Problem"
+                    value="#{order.maintenanceAssignment.problem}"
+            />
+            <b:calendar id="startOn"
+                        label="Plan on"
+                        hideLabel="false"
+                        value="#{order.maintenanceAssignment.plannedDate}"
+                        pickDate="true"
+                        pickTime="true"
+                        sideBySide="true"
+                        language="nl"
+                        glyphiconDate="glyphicon glyphicon-calendar"
+                        glyphiconTime="glyphicon glyphicon-time"
+                        glyphiconUp="glyphicon glyphicon-chevron-up"
+                        glyphiconDown="glyphicon glyphicon-chevron-down"
+                        placeholder="Enter date or click icon..."
+                        styleClass="null"
+                        readonly="false"
+                        required="false"
+                        disabled="false"
+                        autoFocus="false"
+                        rendered="true">
+                <f:converter converterId="javaminor.al.util.CalendarConverter"/>
+            </b:calendar>
+            <bInputText:ButterfaceInputText
+                    identifier="Mileage"
+                    label="Mileage"
+                    type="number"
+                    value="#{order.maintenanceAssignment.mileage}"
+            />
+            <b:labeledContainer label="Periodic Inspection">
+                <h:selectBooleanCheckbox value="#{order.maintenanceAssignment.apk}"/>
+            </b:labeledContainer>
+            <br/>
+            <h:commandButton id="orderCreateBtn" type="submit" value="Create"
+                             action="#{order.addOrder(customer.car.numberPlate)}"
+                             styleClass="btn btn-primary"/>
+            <br/>
+            <h:message for="orderCreateBtn" errorClass="alert-danger" warnClass="alert-warning"
+                       fatalClass="alert-danger" infoClass="alert-info" styleClass="alert-success"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

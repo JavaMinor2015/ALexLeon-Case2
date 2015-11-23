@@ -1,7 +1,9 @@
-package javaminor.al.beans;
+package javaminor.al.domain.beans;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.service.MaintenanceService;
@@ -22,19 +24,24 @@ public class MaintenanceManangedBean implements Serializable {
     private static final long serialVersionUID = -6345558917227891127L;
 
     private List<MaintenanceAssignment> assignments;
+    private Map<Long, Car> assignmentToCar;
 
     @EJB
     private MaintenanceService maintenanceService;
+
+    @EJB
+    private CarBean carBean;
 
     @PostConstruct
     public void init() {
         if (assignments == null) {
             assignments = maintenanceService.getUnfinishedAssignments();
+            assignmentToCar = carBean.findByAssignments(assignments);
         }
     }
 
     public Car getLinkedCar(MaintenanceAssignment assignment) {
-        return null;
+        return assignmentToCar.get(assignment.getId());
     }
 
 }

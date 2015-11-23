@@ -1,0 +1,32 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components">
+    <bInputText:ButterfaceInputText/>
+    <ui:param name="title" value="Add Car"/>
+    <ui:define name="content">
+        <h:form id="addCar">
+            <bInputText:ButterfaceInputText
+                    identifier="licensePlate"
+                    label="License plate"
+                    placeholder="Enter license plate..."
+                    value="#{customer.car.numberPlate}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="carType"
+                    label="Type"
+                    placeholder="Enter type..."
+                    value="#{customer.car.type}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="carModel"
+                    label="Model"
+                    placeholder="Enter model..."
+                    value="#{customer.car.model}"/>
+            <h:commandButton id="carCreateBtn" type="submit" value="Create" action="#{customer.addCar()}"
+                             styleClass="btn btn-primary"/>
+            <br/>
+            <h:message for="carCreateBtn" errorClass="alert-danger" warnClass="alert-warning"
+                       fatalClass="alert-danger" infoClass="alert-info" styleClass="alert-success"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

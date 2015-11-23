@@ -2,8 +2,8 @@ package javaminor.al.service;
 
 import java.io.Serializable;
 import java.util.List;
-import javaminor.al.beans.MaintenanceBean;
 import javaminor.al.business.MaintenanceStatus;
+import javaminor.al.domain.beans.MaintenanceBean;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
