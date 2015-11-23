@@ -5,6 +5,7 @@ import javaminor.al.business.Rules;
 import javaminor.al.entities.abs.PersistentEntity;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import lombok.*;
@@ -30,7 +31,10 @@ public class Car extends PersistentEntity {
     @Size(min = Rules.TYPE_MIN_LENGTH, max = Rules.TYPE_MAX_LENGTH)
     private String type;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "car")
     private List<MaintenanceAssignment> assignments;
+
+    @ManyToOne
+    private Driver driver;
 
 }

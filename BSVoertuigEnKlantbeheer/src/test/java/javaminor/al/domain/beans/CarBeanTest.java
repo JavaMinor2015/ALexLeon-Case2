@@ -31,7 +31,7 @@ public class CarBeanTest {
 
     @Test
     public void testGetByPlate() throws Exception {
-        when(mockCarRepository.findByPlate("AA")).thenReturn(new Car("AA", null, null, null));
+        when(mockCarRepository.findByPlate("AA")).thenReturn(new Car("AA", null, null, null, null));
         assertThat(carBean.getByPlate("AA").getNumberPlate(), is("AA"));
 
     }
