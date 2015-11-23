@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
+import javaminor.al.entities.concrete.MaintenanceWork;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -33,6 +34,8 @@ public class OrderManagedBean implements Serializable {
     @EJB
     private CarBean carBean;
 
+    private Car car;
+
     private MaintenanceAssignment maintenanceAssignment;
 
     /**
@@ -42,6 +45,7 @@ public class OrderManagedBean implements Serializable {
     public void init() {
         maintenanceAssignment = new MaintenanceAssignment();
         maintenanceAssignment.setStatus(MaintenanceStatus.NEW);
+        maintenanceAssignment.setExecutedWork(new ArrayList<>());
     }
 
     /**
@@ -52,7 +56,7 @@ public class OrderManagedBean implements Serializable {
      */
     public String addOrder(final String numberPlate) {
         // TODO move this stuff to the OnderhoudProces module
-        Car car = carBean.getByPlate(numberPlate);
+        car = carBean.getByPlate(numberPlate);
         if (car == null) {
             FacesContext.getCurrentInstance().addMessage("addOrder:orderCreateBtn", new
                     FacesMessage("Invalid license plate"));
@@ -72,5 +76,43 @@ public class OrderManagedBean implements Serializable {
         car.getAssignments().add(maintenanceAssignment);
         carBean.refresh();
         return "index";
+    }
+
+    public void addWork() {
+        maintenanceAssignment.getExecutedWork().add(MaintenanceWork.builder().build());
+        car = carBean.update(car);
+    }
+
+    public boolean hasEmptyWorkOrders() {
+        if (maintenanceAssignment.getExecutedWork().isEmpty()) {
+            return false;
+        }
+        for (MaintenanceWork maintenanceWork : maintenanceAssignment.getExecutedWork()) {
+            if (maintenanceWork.getComments() == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void saveWork() {
+        car = carBean.update(car);
+    }
+
+    public void markAssignmentTaken() {
+        maintenanceAssignment.setStatus(MaintenanceStatus.IN_PROGRESS);
+        carBean.refresh();
+    }
+
+    public void markAssignmentFinished() {
+        maintenanceAssignment.setStatus(MaintenanceStatus.FINISHED);
+        carBean.refresh();
+    }
+
+    public boolean assignmentInProgress() {
+        if (maintenanceAssignment.getStatus().equals(MaintenanceStatus.IN_PROGRESS)) {
+            return true;
+        }
+        return false;
     }
 }

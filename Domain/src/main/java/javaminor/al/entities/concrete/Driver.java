@@ -32,7 +32,7 @@ public class Driver extends Customer {
     @Size(min = Rules.LAST_NAME_MIN_LENGTH, max = Rules.LAST_NAME_MAX_LENGTH)
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Car> cars;
 
 }
