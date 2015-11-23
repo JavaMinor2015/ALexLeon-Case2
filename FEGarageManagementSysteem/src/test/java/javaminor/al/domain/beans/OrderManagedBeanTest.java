@@ -88,6 +88,6 @@ public class OrderManagedBeanTest {
         orderManagedBean.setMaintenanceAssignment(mockedAssignment);
         testCar.setAssignments(null);
 
-        assertThat(orderManagedBean.addOrder("AA"), is("index"));
+        assertThat(orderManagedBean.addOrder("AA"), is("maintenanceOverview"));
     }
 }
