@@ -1,18 +1,16 @@
 package javaminor.al.beans;
 
-import javaminor.al.business.MaintenanceStatus;
+import java.io.Serializable;
+import java.util.List;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.service.MaintenanceService;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import java.io.Serializable;
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by Stoux on 23/11/2015.

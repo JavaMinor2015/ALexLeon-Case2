@@ -2,12 +2,11 @@ package javaminor.al.beans;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.Stateful;
-import javax.inject.Inject;
-
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.MaintenanceRepository;
+import javax.ejb.Stateful;
+import javax.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
 

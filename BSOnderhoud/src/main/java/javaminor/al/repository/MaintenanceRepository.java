@@ -1,17 +1,15 @@
 package javaminor.al.repository;
 
+import java.io.Serializable;
+import java.util.List;
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.abs.Repository;
-
 import javax.ejb.Stateful;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by alex on 11/19/15.
@@ -40,12 +38,8 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
             return getAll();
         }
 
-        List<Predicate> predicates = new ArrayList<>();
-        for (MaintenanceStatus singleStatus : status) {
-            predicates.add(cb.equal(root.get("status"), status));
-        }
-
-        query.where(predicates.toArray(new Predicate[predicates.size()]));
+        Expression<String> exp = root.get("status");
+        query.where(exp.in(status));
         return getEm().createQuery(query).getResultList();
     }
 }

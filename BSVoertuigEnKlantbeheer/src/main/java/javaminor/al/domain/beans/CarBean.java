@@ -1,10 +1,6 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javaminor.al.entities.concrete.Car;
-import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.CarRepository;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
@@ -23,9 +19,5 @@ public class CarBean implements Serializable {
 
     @Inject
     private CarRepository carRepository;
-
-    public List<Car> getLinkedCars(List<MaintenanceAssignment> assignments) {
-        
-    }
 
 }
