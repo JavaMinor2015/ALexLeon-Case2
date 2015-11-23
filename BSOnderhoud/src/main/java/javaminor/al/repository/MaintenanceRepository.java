@@ -39,7 +39,7 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
         }
 
         Expression<String> exp = root.get("status");
-        query.where(exp.in(status));
+        query.where(exp.in((Object[]) status));
         return getEm().createQuery(query).getResultList();
     }
 }
