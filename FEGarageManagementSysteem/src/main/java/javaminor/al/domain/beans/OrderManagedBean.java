@@ -71,6 +71,6 @@ public class OrderManagedBean implements Serializable {
 
         car.getAssignments().add(maintenanceAssignment);
         carBean.refresh();
-        return "index";
+        return "maintenanceOverview";
     }
 }

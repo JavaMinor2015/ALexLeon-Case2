@@ -1,8 +1,12 @@
 package javaminor.al.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javaminor.al.entities.concrete.Car;
+import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.abs.Repository;
 import javax.ejb.Stateful;
 import javax.persistence.NonUniqueResultException;
@@ -63,4 +67,32 @@ public class CarRepository extends Repository<Car> implements Serializable {
         getItemList().add(response);
         return response;
     }
+
+    /**
+     * Find all cars by assignments
+     * @param assignments The assignments
+     * @return ID of MaintenanceAssignment => Car
+     */
+    public Map<Long, Car> findByAssignments(List<MaintenanceAssignment> assignments) {
+        //TODO: Use actual JPQL
+        Map<Long, Car> cars = new HashMap<>();
+        for (Car car : getAll()) {
+            boolean added = false;
+            for (MaintenanceAssignment maintenanceAssignment : car.getAssignments()) {
+                for (MaintenanceAssignment assignment : assignments) {
+                    if (assignment.getId().equals(maintenanceAssignment.getId())) {
+                        cars.put(assignment.getId(), car);
+                        added = true;
+                        break;
+                    }
+                }
+                if (added) {
+                    break;
+                }
+            }
+        }
+        return cars;
+    }
+
+
 }
