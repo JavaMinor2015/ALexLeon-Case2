@@ -3,6 +3,7 @@ package javaminor.al.repository;
 import java.io.Serializable;
 import java.util.List;
 import javaminor.al.entities.concrete.Car;
+import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.abs.Repository;
 import javax.ejb.Stateful;
 
@@ -27,6 +28,10 @@ public class CarRepository extends Repository<Car> implements Serializable {
      */
     public Car getById(final long id) {
         return super.findById(Car.class, id);
+    }
+
+    public List<Car> getLinkedCars(List<MaintenanceAssignment> assignments) {
+        
     }
 
 }
