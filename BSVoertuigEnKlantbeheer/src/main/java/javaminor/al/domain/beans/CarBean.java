@@ -1,10 +1,7 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 import javaminor.al.entities.concrete.Car;
-import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.CarRepository;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -41,13 +38,4 @@ public class CarBean implements Serializable {
         carRepository.update();
     }
 
-    /**
-     * Find all cars by assignments.
-     *
-     * @param assignments The assignments
-     * @return ID of MaintenanceAssignment => Car
-     */
-    public Map<Long, Car> findByAssignments(List<MaintenanceAssignment> assignments) {
-        return carRepository.findByAssignments(assignments);
-    }
 }

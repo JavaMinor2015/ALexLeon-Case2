@@ -14,7 +14,7 @@
                     Car
                 </f:facet>
                 <h:outputText
-                        value="#{maintenance.getLinkedCar(rowItem).model} | #{maintenance.getLinkedCar(rowItem).type}"/>
+                        value="#{rowItem.car.model} | #{rowItem.car.type}"/>
             </h:column>
 
             <h:column>

@@ -37,4 +37,8 @@ public class MaintenanceAssignment extends PersistentEntity {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<MaintenanceWork> executedWork;
 
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
+
 }

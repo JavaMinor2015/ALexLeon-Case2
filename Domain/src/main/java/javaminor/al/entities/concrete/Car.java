@@ -30,7 +30,7 @@ public class Car extends PersistentEntity {
     @Size(min = Rules.TYPE_MIN_LENGTH, max = Rules.TYPE_MAX_LENGTH)
     private String type;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "car")
     private List<MaintenanceAssignment> assignments;
 
 }
