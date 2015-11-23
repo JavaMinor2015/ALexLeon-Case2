@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class StrUtilTest {
 
     @Test
-    public void testConstructor() throws Exception{
+    public void testConstructor() throws Exception {
         // because 100%
         try {
             Constructor<StrUtil> con = (Constructor<StrUtil>) StrUtil.class.getDeclaredConstructors()[0];

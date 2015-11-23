@@ -8,7 +8,9 @@
     <composite:attribute name="label"/>
     <composite:attribute name="value"/>
     <composite:attribute name="placeholder"/>
+    <composite:attribute name="type" default="text"/>
     <composite:attribute name="required" default="true"/>
+    <composite:attribute name="disabled" default="false"/>
 </composite:interface>
 <!--Implementation for a butterface input text field interface-->
 <composite:implementation>
@@ -17,14 +19,14 @@
             hideLabel="false"
             value="#{cc.attrs.value}"
             placeholder="#{cc.attrs.placeholder}"
-            type="null"
+            type="#{cc.attrs.type}"
             pattern="null"
             min="null"
             max="null"
             styleClass="null"
             readonly="false"
             required="#{cc.attrs.required}"
-            disabled="false"
+            disabled="#{cc.attrs.disabled}"
             autoFocus="true"
             rendered="true">
         <h:message for="#{cc.id}"

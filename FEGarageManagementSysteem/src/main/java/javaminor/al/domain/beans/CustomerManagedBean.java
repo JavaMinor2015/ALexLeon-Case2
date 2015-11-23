@@ -1,8 +1,7 @@
-package javaminor.al.beans;
+package javaminor.al.domain.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import javaminor.al.domain.beans.CustomerBean;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.Driver;
 import javax.annotation.PostConstruct;
@@ -82,6 +81,6 @@ public class CustomerManagedBean implements Serializable {
         bean.refresh();
         FacesContext.getCurrentInstance().addMessage("addCar:carCreateBtn", new
                 FacesMessage("Added car: " + car.getModel()));
-        return "index";
+        return "addOrder";
     }
 }

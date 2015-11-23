@@ -1,6 +1,7 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
+import javaminor.al.entities.concrete.Car;
 import javaminor.al.repository.CarRepository;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -20,4 +21,20 @@ public class CarBean implements Serializable {
     @EJB
     private CarRepository carRepository;
 
+    /**
+     * Find a car by its license plate.
+     *
+     * @param plateNumber the plate number
+     * @return the corresponding car or null if not found
+     */
+    public Car getByPlate(final String plateNumber) {
+        return carRepository.findByPlate(plateNumber);
+    }
+
+    /**
+     * Call to ensure fresh data.
+     */
+    public void refresh() {
+        carRepository.update();
+    }
 }

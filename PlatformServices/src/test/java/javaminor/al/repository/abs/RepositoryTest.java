@@ -25,7 +25,7 @@ public class RepositoryTest {
 
     private EntityManager mockManager;
 
-    private static final String TEST_STRING =  "Help me, I'm trapped in a repository!";
+    private static final String TEST_STRING = "Help me, I'm trapped in a repository!";
     private Root<String> mockRoot;
     private List<String> stringList;
 
@@ -48,6 +48,8 @@ public class RepositoryTest {
         mockRepository = new MockRepository();
         mockRepository.setEm(mockManager);
 
+        assertThat(mockRepository.getEm(), is(mockManager));
+
         when(mockManager.getCriteriaBuilder()).thenReturn(mockBuilder);
         when(mockBuilder.createQuery(String.class)).thenReturn(mockCriteriaQuery);
         when(mockManager.createQuery(mockCriteriaQuery)).thenReturn(mockTypedQuery);
@@ -65,6 +67,13 @@ public class RepositoryTest {
         // no exceptions
         mockRepository.save();
     }
+
+    @Test
+    public void testUpdate() throws Exception {
+        // no exceptions
+        mockRepository.update();
+    }
+
 
     @Test
     public void testAdd() throws Exception {

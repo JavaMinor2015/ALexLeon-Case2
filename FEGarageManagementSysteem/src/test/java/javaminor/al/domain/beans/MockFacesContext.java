@@ -1,4 +1,4 @@
-package javaminor.al.beans;
+package javaminor.al.domain.beans;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
