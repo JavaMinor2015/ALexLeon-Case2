@@ -45,7 +45,7 @@ public class OrderManagedBeanTest {
         mockedCarBean = mock(CarBean.class);
         mockedMaintenanceBean = mock(MaintenanceBean.class);
         mockedAssignment = mock(MaintenanceAssignment.class);
-        testCar = new Car("AA", "BB", "CC", new ArrayList<>());
+        testCar = new Car("AA", "BB", "CC", new ArrayList<>(), null);
         assignmentList = new ArrayList<>();
         assignmentList.add(mockedAssignment);
         orderManagedBean = new OrderManagedBean();
@@ -75,7 +75,7 @@ public class OrderManagedBeanTest {
     @Test
     public void testAddOrder() throws Exception {
         when(mockedCarBean.getByPlate("AA")).thenReturn(testCar);
-        assertThat(orderManagedBean.addOrder("AA"), is("index"));
+        assertThat(orderManagedBean.addOrder("AA"), is("maintenanceOverview"));
         assertThat(testCar.getAssignments().size(), is(1));
 
         when(mockedCarBean.getByPlate("AA")).thenReturn(null);
@@ -88,6 +88,6 @@ public class OrderManagedBeanTest {
         orderManagedBean.setMaintenanceAssignment(mockedAssignment);
         testCar.setAssignments(null);
 
-        assertThat(orderManagedBean.addOrder("AA"), is("index"));
+        assertThat(orderManagedBean.addOrder("AA"), is("maintenanceOverview"));
     }
 }

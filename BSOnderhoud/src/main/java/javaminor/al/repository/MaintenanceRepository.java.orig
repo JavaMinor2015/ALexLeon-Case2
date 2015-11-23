@@ -2,6 +2,7 @@ package javaminor.al.repository;
 
 import java.io.Serializable;
 import java.util.List;
+<<<<<<< HEAD
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.abs.Repository;
@@ -10,22 +11,27 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
+=======
+import javaminor.al.entities.concrete.MaintenanceAssignment;
+import javaminor.al.repository.abs.Repository;
+import javax.ejb.Stateful;
+>>>>>>> dev
 
 /**
  * Created by alex on 11/19/15.
  */
 @Stateful
 public class MaintenanceRepository extends Repository<MaintenanceAssignment> implements Serializable {
-    private static final long serialVersionUID = 3685460892410875026L;
+<<<<<<< HEAD
 
     @Override
     public List<MaintenanceAssignment> getAll() {
-        return super.getAll(MaintenanceAssignment.class);
+        return getAll(MaintenanceAssignment.class);
     }
 
+
     /**
-     * Get all MaintenanceAssignments with a certain status.
-     *
+     * Get all MaintenanceAssignments with a certain status
      * @param status One or more status
      * @return The list
      */
@@ -40,7 +46,14 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
         }
 
         Expression<String> exp = root.get("status");
-        query.where(exp.in((Object[]) status));
+        query.where(exp.in(status));
         return getEm().createQuery(query).getResultList();
+=======
+    private static final long serialVersionUID = 3685460892410875026L;
+
+    @Override
+    public List<MaintenanceAssignment> getAll() {
+        return super.getAll(MaintenanceAssignment.class);
+>>>>>>> dev
     }
 }

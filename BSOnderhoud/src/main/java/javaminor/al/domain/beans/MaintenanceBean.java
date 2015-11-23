@@ -1,6 +1,8 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
+import java.util.List;
+import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.MaintenanceRepository;
 import javax.ejb.EJB;
@@ -39,5 +41,24 @@ public class MaintenanceBean implements Serializable {
      */
     public void refresh() {
         maintenanceRepository.save();
+    }
+
+    /**
+     * Get all assignments.
+     *
+     * @return the assignments
+     */
+    public List<MaintenanceAssignment> getAssignments() {
+        return maintenanceRepository.getAll();
+    }
+
+    /**
+     * Get all Assignments with a certain status.
+     *
+     * @param status The status
+     * @return the assignments
+     */
+    public List<MaintenanceAssignment> getAssignmentsWithStatus(MaintenanceStatus... status) {
+        return maintenanceRepository.getAllWithStatus(status);
     }
 }

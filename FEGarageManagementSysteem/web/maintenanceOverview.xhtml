@@ -1,0 +1,45 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:param name="title" value="Maintenance"/>
+    <ui:define name="content">
+
+        <h:dataTable id="assignmentTable" value="#{maintenance.assignments}" var="rowItem" border="1"
+                     styleClass="table table-responsive">
+            <h:column>
+                <f:facet name="header">
+                    Car
+                </f:facet>
+                <h:outputText
+                        value="#{rowItem.car.model} | #{rowItem.car.type}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Status
+                </f:facet>
+                <h:outputText value="#{rowItem.status}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Problem
+                </f:facet>
+                <h:outputText value="#{rowItem.problem}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    View
+                </f:facet>
+                <h:outputText value="INSERT URL"/>
+            </h:column>
+
+        </h:dataTable>
+
+    </ui:define>
+
+</ui:composition>

@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>GMS.Leon.Alex</groupId>
-            <artifactId>BSVoertuigEnKlantbeheer</artifactId>
+            <artifactId>BSOnderhoud</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
