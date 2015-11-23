@@ -1,7 +1,6 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javaminor.al.entities.concrete.Car;
@@ -19,7 +18,8 @@ import lombok.Setter;
  */
 @Named("maintenance")
 @RequestScoped
-@Getter @Setter
+@Getter
+@Setter
 public class MaintenanceManangedBean implements Serializable {
     private static final long serialVersionUID = -6345558917227891127L;
 
@@ -32,6 +32,9 @@ public class MaintenanceManangedBean implements Serializable {
     @EJB
     private CarBean carBean;
 
+    /**
+     * Initializes the service after bean injection.
+     */
     @PostConstruct
     public void init() {
         if (assignments == null) {
@@ -40,6 +43,12 @@ public class MaintenanceManangedBean implements Serializable {
         }
     }
 
+    /**
+     * Retrieve  a linked car.
+     *
+     * @param assignment the assignment linked to this car
+     * @return the corresponding car
+     */
     public Car getLinkedCar(MaintenanceAssignment assignment) {
         return assignmentToCar.get(assignment.getId());
     }

@@ -1,7 +1,6 @@
 package javaminor.al.repository;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +68,8 @@ public class CarRepository extends Repository<Car> implements Serializable {
     }
 
     /**
-     * Find all cars by assignments
+     * Find all cars by assignments.
+     *
      * @param assignments The assignments
      * @return ID of MaintenanceAssignment => Car
      */
@@ -77,21 +77,26 @@ public class CarRepository extends Repository<Car> implements Serializable {
         //TODO: Use actual JPQL
         Map<Long, Car> cars = new HashMap<>();
         for (Car car : getAll()) {
-            boolean added = false;
-            for (MaintenanceAssignment maintenanceAssignment : car.getAssignments()) {
-                for (MaintenanceAssignment assignment : assignments) {
-                    if (assignment.getId().equals(maintenanceAssignment.getId())) {
-                        cars.put(assignment.getId(), car);
-                        added = true;
-                        break;
-                    }
-                }
-                if (added) {
+            find(assignments, cars, car, false);
+        }
+        return cars;
+    }
+
+    // eww
+    private void find(final List<MaintenanceAssignment> assignments, final Map<Long, Car> cars, final Car car, boolean added) {
+        boolean b = added;
+        for (MaintenanceAssignment maintenanceAssignment : car.getAssignments()) {
+            for (MaintenanceAssignment assignment : assignments) {
+                if (assignment.getId().equals(maintenanceAssignment.getId())) {
+                    cars.put(assignment.getId(), car);
+                    b = true;
                     break;
                 }
             }
+            if (b) {
+                break;
+            }
         }
-        return cars;
     }
 
 

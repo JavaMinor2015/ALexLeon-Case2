@@ -44,7 +44,8 @@ public class MaintenanceBean implements Serializable {
     }
 
     /**
-     * Get all assignments
+     * Get all assignments.
+     *
      * @return the assignments
      */
     public List<MaintenanceAssignment> getAssignments() {
@@ -52,7 +53,8 @@ public class MaintenanceBean implements Serializable {
     }
 
     /**
-     * Get all Assignments with a certain status
+     * Get all Assignments with a certain status.
+     *
      * @param status The status
      * @return the assignments
      */
