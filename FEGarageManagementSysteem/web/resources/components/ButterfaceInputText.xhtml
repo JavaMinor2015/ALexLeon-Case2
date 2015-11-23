@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:b="http://butterfaces.larmic.de/components">
+<!--Interface for a butterface input text field-->
+<composite:interface name="input">
+    <composite:attribute name="identifier" default="#{cc.id}"/>
+    <composite:attribute name="label"/>
+    <composite:attribute name="value"/>
+    <composite:attribute name="placeholder"/>
+    <composite:attribute name="type" default="text"/>
+    <composite:attribute name="required" default="true"/>
+    <composite:attribute name="disabled" default="false"/>
+</composite:interface>
+<!--Implementation for a butterface input text field interface-->
+<composite:implementation>
+    <b:text id="#{cc.attrs.identifier}"
+            label="#{cc.attrs.label}"
+            hideLabel="false"
+            value="#{cc.attrs.value}"
+            placeholder="#{cc.attrs.placeholder}"
+            type="#{cc.attrs.type}"
+            pattern="null"
+            min="null"
+            max="null"
+            styleClass="null"
+            readonly="false"
+            required="#{cc.attrs.required}"
+            disabled="#{cc.attrs.disabled}"
+            autoFocus="true"
+            rendered="true">
+        <h:message for="#{cc.id}"
+                   errorClass="alert-danger"
+                   fatalClass="alert-danger"
+                   infoClass="alert-info"
+                   warnClass="alert-warning"/>
+    </b:text>
+</composite:implementation>
+</html>

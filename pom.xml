@@ -13,6 +13,9 @@
         <module>PcSOnderhoud</module>
         <module>BSVoertuigEnKlantbeheer</module>
         <module>ISRijksdienstWegverkeer</module>
+        <module>Domain</module>
+        <module>BSOnderhoud</module>
+        <module>PlatformServices</module>
     </modules>
     <properties>
         <jackson.version>1.8.6</jackson.version>
@@ -44,6 +47,12 @@
         </profile>
     </profiles>
     <dependencies>
+        <dependency>
+            <groupId>org.codehaus.sonar-plugins.java</groupId>
+            <artifactId>sonar-jacoco-listeners</artifactId>
+            <version>1.2</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

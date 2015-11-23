@@ -1,0 +1,81 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://butterfaces.larmic.de/components"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components">
+    <bInputText:ButterfaceInputText/>
+    <ui:param name="title" value="Add Customer"/>
+    <ui:define name="content">
+        <h:form id="addCustomer">
+            <!--because of session scope-->
+            #{customer.init()}
+            <b:radioBox id="input"
+                        label="label"
+                        hideLabel="false"
+                        value="(item is null)"
+                        styleClass="null"
+                        readonly="false"
+                        required="false"
+                        disabled="false"
+                        layout="lineDirection"
+                        rendered="true">
+                <f:selectItem itemValue="Driver"
+                              itemLabel="Driver"/>
+            </b:radioBox>
+            <bInputText:ButterfaceInputText
+                    identifier="firstName"
+                    label="First Name"
+                    placeholder="Enter first name..."
+                    value="#{customer.driver.firstName}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="insertion"
+                    label="Insertion"
+                    placeholder="Enter insertions..."
+                    value="#{customer.driver.insertion}"
+                    required="false"/>
+            <bInputText:ButterfaceInputText
+                    identifier="lastName"
+                    label="Last Name"
+                    placeholder="Enter last name..."
+                    value="#{customer.driver.lastName}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="email"
+                    label="Email"
+                    placeholder="Enter email..."
+                    value="#{customer.driver.email}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="city"
+                    label="City"
+                    placeholder="Enter city..."
+                    value="#{customer.driver.city}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="zipCode"
+                    label="Zip Code"
+                    placeholder="Enter zip code..."
+                    value="#{customer.driver.zipCode}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="street"
+                    label="Street"
+                    placeholder="Enter street..."
+                    value="#{customer.driver.streetName}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="number"
+                    label="Number"
+                    placeholder="Enter number..."
+                    value="#{customer.driver.number}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="phone"
+                    label="Phone"
+                    placeholder="Enter phone..."
+                    value="#{customer.driver.phone}"/>
+            <h:commandButton id="customerCreateBtn" type="submit" value="Create" action="#{customer.createCustomer}"
+                             styleClass="btn btn-primary"/>
+            <br/>
+            <h:message for="customerCreateBtn" errorClass="alert-danger" warnClass="alert-warning"
+                       fatalClass="alert-danger" infoClass="alert-info" styleClass="alert-success"/>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

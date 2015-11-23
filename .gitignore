@@ -47,6 +47,7 @@ hs_err_pid*
 
 # IntelliJ
 /out/
+/classes/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -62,3 +63,15 @@ crashlytics-build.properties
 # Created by .ignore support plugin (hsz.mobi)
 
 sonar-project.properties
+checkstyle.xml
+findbugs-include.xml
+/FEGarageManagementSysteem/target/
+/BSVoertuigEnKlantbeheer/target/
+/ISRijksdienstWegverkeer/target/
+/PcSOnderhoud/target/
+/PlatformServices/target/
+/BSOnderhoud/target/
+/Domain/target/
+/target/
+findbugs-result.xml
+.sonar/
