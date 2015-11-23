@@ -6,6 +6,7 @@ import javaminor.al.repository.MaintenanceRepository;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Stateful
 @Getter
 @Setter
+@NoArgsConstructor
 public class MaintenanceBean implements Serializable {
 
     private static final long serialVersionUID = -3551969903952911887L;
