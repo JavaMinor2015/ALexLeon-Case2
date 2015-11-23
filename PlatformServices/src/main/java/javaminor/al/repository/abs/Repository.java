@@ -42,6 +42,9 @@ public abstract class Repository<T> {
         em.flush();
     }
 
+    /**
+     * Update all items in this repository.
+     */
     public void update() {
         itemList.forEach(em::merge);
         em.flush();
