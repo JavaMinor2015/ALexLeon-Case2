@@ -38,8 +38,13 @@ public abstract class Repository<T> {
      * Persist all items in this repository.
      */
     public void save() {
-        itemList.forEach(getEm()::merge);
-        getEm().flush();
+        itemList.forEach(em::persist);
+        em.flush();
+    }
+
+    public void update() {
+        itemList.forEach(em::merge);
+        em.flush();
     }
 
     /**
@@ -50,6 +55,8 @@ public abstract class Repository<T> {
      * @param item the item to add.
      */
     public void add(final T item) {
+        em.persist(item);
+        itemList.clear();
         itemList.add(item);
     }
 
@@ -67,6 +74,7 @@ public abstract class Repository<T> {
         cq.select(t);
         TypedQuery<T> q = em.createQuery(cq);
         response = q.getResultList();
+        itemList = response;
         return response;
     }
 
@@ -86,6 +94,9 @@ public abstract class Repository<T> {
                 cb.equal(root.get("id"), idToFind)
         );
         TypedQuery<T> q = em.createQuery(cq);
-        return q.getSingleResult();
+        T response = q.getSingleResult();
+        itemList.clear();
+        itemList.add(response);
+        return response;
     }
 }

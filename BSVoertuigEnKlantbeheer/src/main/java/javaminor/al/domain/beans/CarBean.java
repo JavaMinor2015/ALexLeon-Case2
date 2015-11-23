@@ -35,6 +35,6 @@ public class CarBean implements Serializable {
      * Call to ensure fresh data.
      */
     public void refresh() {
-        carRepository.save();
+        carRepository.update();
     }
 }

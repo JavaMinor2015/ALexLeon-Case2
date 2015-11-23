@@ -38,6 +38,6 @@ public class CustomerBean implements Serializable {
      * Call to ensure fresh data.
      */
     public void refresh() {
-        driverRepository.save();
+        driverRepository.update();
     }
 }
