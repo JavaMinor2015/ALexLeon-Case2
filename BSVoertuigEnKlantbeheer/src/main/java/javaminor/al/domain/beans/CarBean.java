@@ -42,7 +42,8 @@ public class CarBean implements Serializable {
     }
 
     /**
-     * Find all cars by assignments
+     * Find all cars by assignments.
+     *
      * @param assignments The assignments
      * @return ID of MaintenanceAssignment => Car
      */

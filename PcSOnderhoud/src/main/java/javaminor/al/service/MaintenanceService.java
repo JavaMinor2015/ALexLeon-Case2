@@ -25,10 +25,11 @@ public class MaintenanceService implements Serializable {
     private MaintenanceBean maintenanceBean;
 
     /**
-     * Get all assignments that haven't been finished yet
+     * Get all assignments that haven't been finished yet.
+     *
      * @return the list
      */
-    public List<MaintenanceAssignment> getUnfinishedAssignments(){
+    public List<MaintenanceAssignment> getUnfinishedAssignments() {
         return maintenanceBean.getAssignmentsWithStatus(MaintenanceStatus.NEW, MaintenanceStatus.IN_PROGRESS);
     }
 

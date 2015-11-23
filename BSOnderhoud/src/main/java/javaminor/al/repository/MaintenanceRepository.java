@@ -24,7 +24,8 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
     }
 
     /**
-     * Get all MaintenanceAssignments with a certain status
+     * Get all MaintenanceAssignments with a certain status.
+     *
      * @param status One or more status
      * @return The list
      */

@@ -7,12 +7,14 @@
     <ui:param name="title" value="Maintenance"/>
     <ui:define name="content">
 
-        <h:dataTable id="assignmentTable" value="#{maintenance.assignments}" var="rowItem" border="1" styleClass="table table-responsive">
+        <h:dataTable id="assignmentTable" value="#{maintenance.assignments}" var="rowItem" border="1"
+                     styleClass="table table-responsive">
             <h:column>
                 <f:facet name="header">
                     Car
                 </f:facet>
-                <h:outputText value="#{maintenance.getLinkedCar(rowItem).model} | #{maintenance.getLinkedCar(rowItem).type}"/>
+                <h:outputText
+                        value="#{maintenance.getLinkedCar(rowItem).model} | #{maintenance.getLinkedCar(rowItem).type}"/>
             </h:column>
 
             <h:column>
