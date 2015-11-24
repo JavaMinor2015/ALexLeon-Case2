@@ -7,6 +7,7 @@
     <ui:param name="title" value="Add Car"/>
     <ui:define name="content">
         <h:form id="addCar">
+            #{customer.initCar()}
             <bInputText:ButterfaceInputText
                     identifier="licensePlate"
                     label="License plate"

@@ -143,4 +143,14 @@ public class MaintenanceProcess {
         assignment.setStatus(MaintenanceStatus.FINISHED);
         maintenanceBean.refresh();
     }
+
+    /**
+     * Retrieve a car by its license plate.
+     *
+     * @param licensePlate the license plate
+     * @return the corresponding car, or null
+     */
+    public Car getCar(final String licensePlate) {
+        return carBean.getByPlate(licensePlate);
+    }
 }

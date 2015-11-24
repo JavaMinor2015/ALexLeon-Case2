@@ -13,36 +13,26 @@
                        label="#{customer.driver.firstName} #{customer.driver.lastName}"
                        badgeText=""
                        rendered="true">
-                <b:comboBox id="input"
-                            label="Car"
-                            hideLabel="false"
-                            value="(item is null)"
-                            tooltip="Select a car"
-                            styleClass="null"
-                            readonly="false"
-                            required="false"
-                            disabled="false"
-                            autoFocus="false"
-                            rendered="true">
-                    <f:selectItems value="#{customer.driver.cars}"
-                                   var="car"
-                                   itemLabel="#{car.numberPlate}"
-                                   itemValue="#{car}"
-                                   noSelectionValue="please choose"/>
-                    <f:facet name="template">
-                        <div class="carItem">
-                            <div class="carDetails">
-                                <h4>{{type}}
-                                    <small>({{model}})</small>
-                                </h4>
-                            </div>
-                        </div>
-                    </f:facet>
-                    <b:tooltip>
-                        Select a car
-                    </b:tooltip>
-                </b:comboBox>
+                <ui:repeat value="#{customer.driver.cars}" var="car">
+
+                    <b>
+                        #{car.numberPlate}
+                    </b>
+                    #{car.type} / #{car.model}
+                    <h:commandButton id="carSelectBtn_#{car.id}" type="submit" value="Add Assignment"
+                                     action="#{customer.setTheCar(car.numberPlate)}"
+                                     styleClass="btn btn-success"/>
+                </ui:repeat>
+
+                <br/>
             </b:section>
+            <br/>
+            <br/>
+        </h:form>
+        <h:form >
+            <h:commandButton id="carCreateBtn" type="submit" value="Add a Car"
+                             action="addCar"
+                             styleClass="btn btn-success"/>
         </h:form>
     </ui:define>
 </ui:composition>
