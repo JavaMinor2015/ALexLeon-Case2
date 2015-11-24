@@ -8,40 +8,40 @@
     <ui:define name="content">
 
         <h:form id="viewAssignment">
-        <h:dataTable id="assignmentTable" value="#{maintenance.unfinishedAssignments}" var="rowItem" border="1"
-                     styleClass="table table-responsive">
-            <h:column>
-                <f:facet name="header">
-                    Car
-                </f:facet>
-                <h:outputText
-                        value="#{rowItem.car.model} | #{rowItem.car.type}"/>
-            </h:column>
+            <h:dataTable id="assignmentTable" value="#{maintenance.unfinishedAssignments}" var="rowItem" border="1"
+                         styleClass="table table-responsive">
+                <h:column>
+                    <f:facet name="header">
+                        Car
+                    </f:facet>
+                    <h:outputText
+                            value="#{rowItem.car.model} | #{rowItem.car.type}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    Status
-                </f:facet>
-                <h:outputText value="#{rowItem.status}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Status
+                    </f:facet>
+                    <h:outputText value="#{rowItem.status}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    Problem
-                </f:facet>
-                <h:outputText value="#{rowItem.problem}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Problem
+                    </f:facet>
+                    <h:outputText value="#{rowItem.problem}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    View
-                </f:facet>
-                <h:commandButton id="viewAssignmentBtn" type="submit" value="Modify status"
-                                 action="#{assignmentBean.viewAssignment(rowItem)}"
-                                 styleClass="btn btn-primary"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        View
+                    </f:facet>
+                    <h:commandButton id="viewAssignmentBtn" type="submit" value="Modify status"
+                                     action="#{assignmentBean.viewAssignment(rowItem)}"
+                                     styleClass="btn btn-primary"/>
+                </h:column>
 
-        </h:dataTable>
+            </h:dataTable>
         </h:form>
 
     </ui:define>

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
-import javaminor.al.entities.concrete.MaintenanceWork;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;

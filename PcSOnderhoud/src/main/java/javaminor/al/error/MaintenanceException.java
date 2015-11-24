@@ -12,7 +12,7 @@ public class MaintenanceException extends RuntimeException {
     /**
      * Create the exception.
      *
-     * @param message the error message
+     * @param message    the error message
      * @param assignment the assignment causing the exception
      */
     public MaintenanceException(final String message, final MaintenanceAssignment assignment) {
