@@ -12,17 +12,12 @@ import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.error.MaintenanceException;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
-import javax.persistence.NoResultException;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 
 /**
  * Created by alex on 11/24/15.
  */
 @Stateful
 public class MaintenanceProcess {
-
-    private static final Logger LOGGER = LogManager.getLogger(MaintenanceProcess.class.getName());
 
     @EJB
     private CarBean carBean;
@@ -42,14 +37,8 @@ public class MaintenanceProcess {
      * @return true if the customer exists, false otherwise
      */
     public boolean customerExists(final String firstName, final String lastName) {
-        final Customer customerFound;
-        try {
-            customerFound = customerBean.getCustomer(firstName, lastName);
-            return customerFound != null;
-        } catch (NoResultException e) {
-            LOGGER.info(e.getMessage(), e);
-            return false;
-        }
+        final Customer customerFound = customerBean.getCustomer(firstName, lastName);
+        return customerFound != null;
     }
 
     /**
@@ -72,14 +61,8 @@ public class MaintenanceProcess {
      * @return true if the car exists, false otherwise
      */
     public boolean carExists(final String licensePlate) {
-        final Car carFound;
-        try {
-            carFound = carBean.getByPlate(licensePlate);
-            return carFound != null;
-        } catch (NoResultException e) {
-            LOGGER.info(e.getMessage(), e);
-            return false;
-        }
+        final Car carFound = carBean.getByPlate(licensePlate);
+        return carFound != null;
     }
 
     /**

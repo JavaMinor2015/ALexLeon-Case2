@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.Driver;
+import javaminor.al.service.MaintenanceProcess;
 import javaminor.al.service.MaintenanceService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -36,8 +37,12 @@ public class CustomerManagedBean implements Serializable {
     @EJB
     private CustomerBean bean;
 
+    // old service, deprecated
     @EJB
     private MaintenanceService maintenanceService;
+
+    @EJB
+    private MaintenanceProcess maintenanceProcess;
 
     /**
      * Initializes the service after bean injection.
@@ -47,6 +52,27 @@ public class CustomerManagedBean implements Serializable {
         driver = new Driver();
         driver.setCars(new ArrayList<>());
         car = new Car();
+    }
+
+    /**
+     * Check if a customer exists.
+     *
+     * @return the next page in the process.
+     */
+    public String checkCustomer() {
+
+        // if proper info is not present, return to page
+        if (driver.getFirstName() == null || driver.getLastName() == null) {
+            return "index";
+        }
+
+        // if exists, go to customer page
+        if (maintenanceProcess.customerExists(driver.getFirstName(), driver.getLastName())) {
+            return "viewCustomer";
+        }
+
+        // if not exists create
+        return "addCustomer";
     }
 
     /**
@@ -67,7 +93,9 @@ public class CustomerManagedBean implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage("addCustomer:customerCreateBtn", new
                 FacesMessage("Added customer: " + driver.getFirstName()));
-        return "addCar";
+
+        // then go to customer page
+        return "viewCustomer";
     }
 
     /**
