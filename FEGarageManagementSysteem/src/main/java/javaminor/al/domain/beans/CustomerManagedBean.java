@@ -46,6 +46,12 @@ public class CustomerManagedBean implements Serializable {
     public void init() {
         driver = new Driver();
         driver.setCars(new ArrayList<>());
+    }
+
+    /**
+     * Create a new blank car.
+     */
+    public void initCar() {
         car = new Car();
     }
 
@@ -64,7 +70,7 @@ public class CustomerManagedBean implements Serializable {
         // if exists, go to customer page
         if (maintenanceProcess.customerExists(driver.getFirstName(), driver.getLastName())) {
             // FIXME: 11/24/15 will break when leasecompany arrives
-            driver = (Driver)bean.getCustomer(driver.getFirstName(), driver.getLastName());
+            driver = (Driver) bean.getCustomer(driver.getFirstName(), driver.getLastName());
             return "viewCustomer";
         }
 
@@ -96,6 +102,19 @@ public class CustomerManagedBean implements Serializable {
     }
 
     /**
+     * Set the car.
+     *
+     * @param licensePlate the car's plate
+     * @return the next page in the process
+     */
+    public String setTheCar(final String licensePlate) {
+        LOGGER.error(licensePlate);
+        this.car = maintenanceProcess.getCar(licensePlate);
+
+        return "addOrder";
+    }
+
+    /**
      * Add a car to the current customer and go to the next step.
      *
      * @return the next page in the process.
@@ -113,5 +132,4 @@ public class CustomerManagedBean implements Serializable {
                 FacesMessage("Added car: " + car.getModel()));
         return "addOrder";
     }
-
 }
