@@ -5,6 +5,11 @@ import java.util.List;
 import javaminor.al.entities.concrete.Driver;
 import javaminor.al.repository.abs.Repository;
 import javax.ejb.Stateful;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  * Created by alex on 11/10/15.
@@ -27,5 +32,27 @@ public class DriverRepository extends Repository<Driver> implements Serializable
      */
     public Driver getById(final long id) {
         return super.findById(Driver.class, id);
+    }
+
+    /**
+     * Find a customer by its first and last name.
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @return the corresponding customer
+     */
+    public Driver findByName(final String firstName, final String lastName) {
+        CriteriaBuilder cb = getEm().getCriteriaBuilder();
+        CriteriaQuery<Driver> cq = cb.createQuery(Driver.class);
+        Root<Driver> root = cq.from(Driver.class);
+        Predicate firstPred = cb.equal(root.get("FIRSTNAME"), firstName);
+        Predicate lastPred = cb.equal(root.get("LASTNAME"), lastName);
+        Predicate bothPred = cb.and(firstPred, lastPred);
+        cq.where(bothPred);
+        TypedQuery<Driver> q = getEm().createQuery(cq);
+        Driver response = q.getSingleResult();
+        getItemList().clear();
+        getItemList().add(response);
+        return response;
     }
 }

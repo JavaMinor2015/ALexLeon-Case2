@@ -1,5 +1,6 @@
 package javaminor.al.entities.concrete;
 
+import java.util.ArrayList;
 import java.util.List;
 import javaminor.al.business.Rules;
 import javaminor.al.entities.abs.PersistentEntity;
@@ -37,4 +38,26 @@ public class Car extends PersistentEntity {
     @ManyToOne
     private Driver driver;
 
+
+    /**
+     * Checks whether this car has this assignment.
+     *
+     * @param assignment the assignment to check for
+     * @return true if this assignment exists for this car, false otherwise
+     */
+    public boolean hasAssignment(final MaintenanceAssignment assignment) {
+        return assignments.contains(assignment);
+    }
+
+    /**
+     * Adds an assignment to this car.
+     *
+     * @param assignment the assignment to add
+     */
+    public void addAssignment(final MaintenanceAssignment assignment) {
+        if (assignments == null) {
+            assignments = new ArrayList<>();
+        }
+        assignments.add(assignment);
+    }
 }

@@ -40,4 +40,8 @@ public class CustomerBean implements Serializable {
     public void refresh() {
         driverRepository.update();
     }
+
+    public Customer getCustomer(final String firstName, final String lastName) {
+        return driverRepository.findByName(firstName, lastName);
+    }
 }

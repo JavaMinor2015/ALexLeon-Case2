@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.Driver;
+import javaminor.al.service.MaintenanceService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -34,6 +35,9 @@ public class CustomerManagedBean implements Serializable {
 
     @EJB
     private CustomerBean bean;
+
+    @EJB
+    private MaintenanceService maintenanceService;
 
     /**
      * Initializes the service after bean injection.
@@ -84,4 +88,5 @@ public class CustomerManagedBean implements Serializable {
                 FacesMessage("Added car: " + car.getModel()));
         return "addOrder";
     }
+
 }
