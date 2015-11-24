@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * Created by alex on 11/19/15.
@@ -16,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustomerBean implements Serializable {
-
+    private static final Logger LOGGER = LogManager.getLogger(CustomerBean.class.getName());
     private static final long serialVersionUID = 473528075546619935L;
 
     @EJB
@@ -46,7 +48,7 @@ public class CustomerBean implements Serializable {
      *
      * @param firstName first name
      * @param lastName  last name
-     * @return the corresponding customer
+     * @return the corresponding customer or null if not found
      */
     public Customer getCustomer(final String firstName, final String lastName) {
         return driverRepository.findByName(firstName, lastName);

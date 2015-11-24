@@ -1,0 +1,48 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://butterfaces.larmic.de/components"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components">
+    <bInputText:ButterfaceInputText/>
+    <ui:param name="title" value="Add Customer"/>
+    <ui:define name="content">
+        <h:form id="viewCustomer">
+            <b:section id="customer"
+                       label="#{customer.driver.firstName} #{customer.driver.lastName}"
+                       badgeText=""
+                       rendered="true">
+                <b:comboBox id="input"
+                            label="Car"
+                            hideLabel="false"
+                            value="(item is null)"
+                            tooltip="Select a car"
+                            styleClass="null"
+                            readonly="false"
+                            required="false"
+                            disabled="false"
+                            autoFocus="false"
+                            rendered="true">
+                    <f:selectItems value="#{customer.driver.cars}"
+                                   var="car"
+                                   itemLabel="#{car.numberPlate}"
+                                   itemValue="#{car}"
+                                   noSelectionValue="please choose"/>
+                    <f:facet name="template">
+                        <div class="carItem">
+                            <div class="carDetails">
+                                <h4>{{type}}
+                                    <small>({{model}})</small>
+                                </h4>
+                            </div>
+                        </div>
+                    </f:facet>
+                    <b:tooltip>
+                        Select a car
+                    </b:tooltip>
+                </b:comboBox>
+            </b:section>
+        </h:form>
+    </ui:define>
+</ui:composition>
