@@ -38,8 +38,13 @@ public class CarBean implements Serializable {
         carRepository.update();
     }
 
-
-    public Car update(final Car car) {
-        return carRepository.getEm().merge(car);
+    /**
+     * Add a car to the repository and save.
+     *
+     * @param car the car to add.
+     */
+    public void addCar(final Car car) {
+        carRepository.add(car);
+        carRepository.save();
     }
 }
