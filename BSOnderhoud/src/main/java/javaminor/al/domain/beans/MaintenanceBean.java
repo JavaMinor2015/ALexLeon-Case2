@@ -2,6 +2,7 @@ package javaminor.al.domain.beans;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.MaintenanceRepository;
@@ -44,6 +45,15 @@ public class MaintenanceBean implements Serializable {
     }
 
     /**
+     * Update a single MaintenanceAssignment.
+     *
+     * @param assignment The assignment
+     */
+    public void updateAssignment(MaintenanceAssignment assignment) {
+        maintenanceRepository.updateAssignment(assignment);
+    }
+
+    /**
      * Get all assignments.
      *
      * @return the assignments
@@ -61,4 +71,15 @@ public class MaintenanceBean implements Serializable {
     public List<MaintenanceAssignment> getAssignmentsWithStatus(MaintenanceStatus... status) {
         return maintenanceRepository.getAllWithStatus(status);
     }
+
+    /**
+     * Find a MaintenanceAssignment by it's ID.
+     *
+     * @param id The ID
+     * @return The MaintenanceAssignment if found
+     */
+    public Optional<MaintenanceAssignment> findById(long id) {
+        return maintenanceRepository.findById(id);
+    }
+
 }

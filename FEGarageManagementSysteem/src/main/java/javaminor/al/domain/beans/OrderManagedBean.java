@@ -79,41 +79,4 @@ public class OrderManagedBean implements Serializable {
         return "maintenanceOverview";
     }
 
-    public void addWork() {
-        maintenanceAssignment.getExecutedWork().add(MaintenanceWork.builder().build());
-        car = carBean.update(car);
-    }
-
-    public boolean hasEmptyWorkOrders() {
-        if (maintenanceAssignment.getExecutedWork().isEmpty()) {
-            return false;
-        }
-        for (MaintenanceWork maintenanceWork : maintenanceAssignment.getExecutedWork()) {
-            if (maintenanceWork.getComments() == null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void saveWork() {
-        car = carBean.update(car);
-    }
-
-    public void markAssignmentTaken() {
-        maintenanceAssignment.setStatus(MaintenanceStatus.IN_PROGRESS);
-        carBean.refresh();
-    }
-
-    public void markAssignmentFinished() {
-        maintenanceAssignment.setStatus(MaintenanceStatus.FINISHED);
-        carBean.refresh();
-    }
-
-    public boolean assignmentInProgress() {
-        if (maintenanceAssignment.getStatus().equals(MaintenanceStatus.IN_PROGRESS)) {
-            return true;
-        }
-        return false;
-    }
 }

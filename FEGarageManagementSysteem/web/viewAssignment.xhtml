@@ -17,97 +17,26 @@
                     identifier="Assignment"
                     label="Assignment"
                     required="false"
-                    value="#{order.maintenanceAssignment}"
+                    value="#{assignmentBean.assignment}"
                     disabled="true"
             />
             <bInputText:ButterfaceInputText
                     identifier="Status"
                     label="Status"
                     required="false"
-                    value="#{order.maintenanceAssignment.status}"
+                    value="#{assignmentBean.assignment.status}"
                     disabled="true"
             />
-            <b:commandLink styleClass="btn btn-success" action="#{order.markAssignmentTaken()}" value="Accept"
-                           rendered="#{!order.assignmentInProgress()}">
-                <f:ajax render=":viewAssignment"/>
-            </b:commandLink>
 
-            <b:commandLink styleClass="btn btn-success" action="#{order.markAssignmentFinished()}" value="Finish"
-                           rendered="#{order.assignmentInProgress()}">
-                <f:ajax render=":viewAssignment"/>
-            </b:commandLink>
-            <!--<b:commandLink styleClass="btn btn-success" action="#{order.addWork()}" value="add work order"-->
-            <!--rendered="#{!order.hasEmptyWorkOrders()}">-->
-            <!--<f:ajax render=":viewAssignment"/>-->
-            <!--</b:commandLink>-->
-            <!--<ui:repeat value="#{order.maintenanceAssignment.executedWork}" var="w">-->
-            <!--<b:commandLink styleClass="btn btn-success" action="#{order.saveWork()}" value="save"-->
-            <!--rendered="#{order.hasEmptyWorkOrders()}">-->
-            <!--<f:ajax render=":viewAssignment"/>-->
-            <!--</b:commandLink>-->
-            <!--<b:section id="workOrder_#{w.id}"-->
-            <!--label="Work Order"-->
-            <!--badgeText="#{(w.comments == null ? 'new' : '')}"-->
-            <!--rendered="true">-->
-            <!--<b:calendar id="startOn"-->
-            <!--label="Started on"-->
-            <!--hideLabel="false"-->
-            <!--value="#{w.startedOn}"-->
-            <!--pickDate="true"-->
-            <!--pickTime="true"-->
-            <!--sideBySide="true"-->
-            <!--language="nl"-->
-            <!--glyphiconDate="glyphicon glyphicon-calendar"-->
-            <!--glyphiconTime="glyphicon glyphicon-time"-->
-            <!--glyphiconUp="glyphicon glyphicon-chevron-up"-->
-            <!--glyphiconDown="glyphicon glyphicon-chevron-down"-->
-            <!--placeholder="Enter date or click icon..."-->
-            <!--styleClass="null"-->
-            <!--readonly="false"-->
-            <!--required="false"-->
-            <!--disabled="false"-->
-            <!--autoFocus="false"-->
-            <!--rendered="true">-->
-            <!--<f:converter converterId="javaminor.al.util.CalendarConverter"/>-->
-            <!--</b:calendar>-->
-
-            <!--<b:calendar id="stoppedOn"-->
-            <!--label="Finished on"-->
-            <!--hideLabel="false"-->
-            <!--value="#{w.finishedOn}"-->
-            <!--pickDate="true"-->
-            <!--pickTime="true"-->
-            <!--sideBySide="true"-->
-            <!--language="nl"-->
-            <!--glyphiconDate="glyphicon glyphicon-calendar"-->
-            <!--glyphiconTime="glyphicon glyphicon-time"-->
-            <!--glyphiconUp="glyphicon glyphicon-chevron-up"-->
-            <!--glyphiconDown="glyphicon glyphicon-chevron-down"-->
-            <!--placeholder="Enter date or click icon..."-->
-            <!--styleClass="null"-->
-            <!--readonly="false"-->
-            <!--required="false"-->
-            <!--disabled="false"-->
-            <!--autoFocus="false"-->
-            <!--rendered="true">-->
-            <!--<f:converter converterId="javaminor.al.util.CalendarConverter"/>-->
-            <!--</b:calendar>-->
-
-            <!--<bInputText:ButterfaceInputText-->
-            <!--identifier="WorkHours"-->
-            <!--label="Work Hours"-->
-            <!--value="#{w.workHours}"-->
-            <!--type="number"-->
-            <!--/>-->
-
-            <!--<bInputText:ButterfaceInputText-->
-            <!--identifier="Comments"-->
-            <!--label="Comments"-->
-            <!--required="false"-->
-            <!--value="#{w.comments}"-->
-            <!--/>-->
-            <!--</b:section>-->
-            <!--</ui:repeat>-->
+            <br/>
+            <h:commandButton id="inProgressBtn" type="submit" value="In progress"
+                             action="#{assignmentBean.inProgress()}"
+                             styleClass="btn btn-primary"
+                             rendered="#{assignmentBean.assignment.status == 'NEW'}"/>
+            <h:commandButton id="finishBtn" type="submit" value="Finish"
+                             action="#{assignmentBean.finish()}"
+                             styleClass="btn btn-primary"
+                             rendered="#{assignmentBean.assignment.status == 'IN_PROGRESS'}"/>
         </h:form>
     </ui:define>
 </ui:composition>

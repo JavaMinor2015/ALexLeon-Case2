@@ -7,7 +7,8 @@
     <ui:param name="title" value="Maintenance"/>
     <ui:define name="content">
 
-        <h:dataTable id="assignmentTable" value="#{maintenance.assignments}" var="rowItem" border="1"
+        <h:form id="viewAssignment">
+        <h:dataTable id="assignmentTable" value="#{maintenance.unfinishedAssignments}" var="rowItem" border="1"
                      styleClass="table table-responsive">
             <h:column>
                 <f:facet name="header">
@@ -35,10 +36,13 @@
                 <f:facet name="header">
                     View
                 </f:facet>
-                <h:outputText value="INSERT URL"/>
+                <h:commandButton id="viewAssignmentBtn" type="submit" value="Modify status"
+                                 action="#{assignmentBean.viewAssignment(rowItem)}"
+                                 styleClass="btn btn-primary"/>
             </h:column>
 
         </h:dataTable>
+        </h:form>
 
     </ui:define>
 

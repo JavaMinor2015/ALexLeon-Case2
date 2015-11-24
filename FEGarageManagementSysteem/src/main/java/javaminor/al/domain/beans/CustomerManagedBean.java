@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.entities.concrete.Driver;
 import javaminor.al.service.MaintenanceProcess;
-import javaminor.al.service.MaintenanceService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -36,10 +35,6 @@ public class CustomerManagedBean implements Serializable {
 
     @EJB
     private CustomerBean bean;
-
-    // old service, deprecated
-    @EJB
-    private MaintenanceService maintenanceService;
 
     @EJB
     private MaintenanceProcess maintenanceProcess;

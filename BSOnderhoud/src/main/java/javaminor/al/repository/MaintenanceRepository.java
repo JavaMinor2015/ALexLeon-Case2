@@ -1,7 +1,9 @@
 package javaminor.al.repository;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.abs.Repository;
@@ -10,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
+import javax.validation.ConstraintViolationException;
 
 /**
  * Created by alex on 11/19/15.
@@ -43,4 +46,35 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
         query.where(exp.in((Object[]) status));
         return getEm().createQuery(query).getResultList();
     }
+
+    /**
+     * Find a MaintenanceAssignment by it's ID.
+     *
+     * @param id The ID
+     * @return The MaintenanceAssignment if found
+     */
+    public Optional<MaintenanceAssignment> findById(long id) {
+        MaintenanceAssignment assignment = findById(MaintenanceAssignment.class, id);
+        if (assignment == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(assignment);
+        }
+    }
+
+    /**
+     * Update a single MaintenanceAssignment.
+     *
+     * @param assignment The assignment
+     */
+    public void updateAssignment(MaintenanceAssignment assignment) {
+        try {
+            getEm().merge(assignment);
+            getEm().flush();
+        } catch (ConstraintViolationException e) {
+            Collection x = e.getConstraintViolations();
+            System.out.println(x);
+        }
+    }
+
 }
