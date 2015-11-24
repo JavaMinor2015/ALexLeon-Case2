@@ -13,12 +13,16 @@ import javaminor.al.error.MaintenanceException;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.NoResultException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * Created by alex on 11/24/15.
  */
 @Stateful
 public class MaintenanceProcess {
+
+    private static final Logger LOGGER = LogManager.getLogger(MaintenanceProcess.class.getName());
 
     @EJB
     private CarBean carBean;
@@ -43,6 +47,7 @@ public class MaintenanceProcess {
             customerFound = customerBean.getCustomer(firstName, lastName);
             return customerFound != null;
         } catch (NoResultException e) {
+            LOGGER.info(e.getMessage(), e);
             return false;
         }
     }
@@ -72,6 +77,7 @@ public class MaintenanceProcess {
             carFound = carBean.getByPlate(licensePlate);
             return carFound != null;
         } catch (NoResultException e) {
+            LOGGER.info(e.getMessage(), e);
             return false;
         }
     }
@@ -100,8 +106,9 @@ public class MaintenanceProcess {
      *
      * @param assignment the assignment to add.
      * @param car        the car to add it to.
+     * @throws MaintenanceException if the assignment is incorrect
      */
-    public void addAssignment(final MaintenanceAssignment assignment, final Car car) throws MaintenanceException {
+    public void addAssignment(final MaintenanceAssignment assignment, final Car car) {
         if (assignment.getStatus() != MaintenanceStatus.NEW) {
             throw new MaintenanceException("This assignment is not new", assignment);
         }
@@ -128,8 +135,9 @@ public class MaintenanceProcess {
      *
      * @param assignment the assignment.
      * @return true if an audit is requested, false otherwise.
+     * @throws MaintenanceException if the assignment is incorrect
      */
-    public boolean markInspectionDone(final MaintenanceAssignment assignment) throws MaintenanceException {
+    public boolean markInspectionDone(final MaintenanceAssignment assignment) {
         if (assignment.getStatus() == MaintenanceStatus.NEW || assignment.getStatus() == MaintenanceStatus.FINISHED) {
             throw new MaintenanceException("This assignment has a status which does not allow modification", assignment);
         }
@@ -143,8 +151,9 @@ public class MaintenanceProcess {
      * Mark an assignment finished.
      *
      * @param assignment the assignment to mark finished.
+     * @throws MaintenanceException if the assignment is incorrect
      */
-    public void markAssignmentFinished(final MaintenanceAssignment assignment) throws MaintenanceException {
+    public void markAssignmentFinished(final MaintenanceAssignment assignment) {
         if (assignment.getStatus() != MaintenanceStatus.IN_PROGRESS) {
             throw new MaintenanceException("This assignment is not in progress", assignment);
         }
