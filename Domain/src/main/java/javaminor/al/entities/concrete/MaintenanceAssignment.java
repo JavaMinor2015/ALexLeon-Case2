@@ -20,7 +20,7 @@ import lombok.*;
 public class MaintenanceAssignment extends PersistentEntity {
     private static final long serialVersionUID = 2243631662528928856L;
 
-    @Future
+    @Future //TODO: It also enforces this constraint on UPDATE...
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar plannedDate;
 

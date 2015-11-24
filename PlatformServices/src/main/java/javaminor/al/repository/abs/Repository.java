@@ -47,7 +47,6 @@ public abstract class Repository<T> {
      */
     public void update() {
         itemList.forEach(em::merge);
-        em.flush();
     }
 
     /**

@@ -1,6 +1,7 @@
 package javaminor.al.service;
 
 import java.util.List;
+import java.util.Optional;
 import javaminor.al.business.MaintenanceStatus;
 import javaminor.al.domain.beans.CarBean;
 import javaminor.al.domain.beans.CustomerBean;
@@ -105,12 +106,36 @@ public class MaintenanceProcess {
     }
 
     /**
+     * Find a MaintenanceAssignment by it's ID.
+     *
+     * @param id The ID
+     * @return The MaintenanceAssignment if found
+     */
+    public Optional<MaintenanceAssignment> findById(long id) {
+        return maintenanceBean.findById(id);
+    }
+
+    /**
      * Get all assignments that haven't been finished yet.
      *
      * @return the list
      */
     public List<MaintenanceAssignment> getUnfinishedAssignments() {
         return maintenanceBean.getAssignmentsWithStatus(MaintenanceStatus.NEW, MaintenanceStatus.IN_PROGRESS);
+    }
+
+    /**
+     * Mark an assignment in progress.
+     *
+     * @param assignment The assignment
+     * @throws MaintenanceException if the assignment is not new
+     */
+    public void markAssignmentInProgress(final MaintenanceAssignment assignment) {
+        if (assignment.getStatus() != MaintenanceStatus.NEW) {
+            throw new MaintenanceException("This assignment is already in progress or finished", assignment);
+        }
+        assignment.setStatus(MaintenanceStatus.IN_PROGRESS);
+        updateAssignment(assignment);
     }
 
     /**
@@ -141,6 +166,10 @@ public class MaintenanceProcess {
             throw new MaintenanceException("This assignment is not in progress", assignment);
         }
         assignment.setStatus(MaintenanceStatus.FINISHED);
-        maintenanceBean.refresh();
+        updateAssignment(assignment);
+    }
+
+    private void updateAssignment(MaintenanceAssignment assignment) {
+        maintenanceBean.updateAssignment(assignment);
     }
 }

@@ -26,7 +26,7 @@ public class MaintenanceWork extends PersistentEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar finishedOn;
 
-    private int workHours;
+    private double workHours;
 
     private String comments;
 
