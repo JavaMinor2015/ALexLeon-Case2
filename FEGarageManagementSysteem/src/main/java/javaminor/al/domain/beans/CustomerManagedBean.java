@@ -68,6 +68,8 @@ public class CustomerManagedBean implements Serializable {
 
         // if exists, go to customer page
         if (maintenanceProcess.customerExists(driver.getFirstName(), driver.getLastName())) {
+            // FIXME: 11/24/15 will break when leasecompany arrives
+            driver = (Driver)bean.getCustomer(driver.getFirstName(), driver.getLastName());
             return "viewCustomer";
         }
 
