@@ -29,6 +29,7 @@ public class MaintenanceService implements Serializable {
      *
      * @return the list
      */
+    @Deprecated
     public List<MaintenanceAssignment> getUnfinishedAssignments() {
         return maintenanceBean.getAssignmentsWithStatus(MaintenanceStatus.NEW, MaintenanceStatus.IN_PROGRESS);
     }

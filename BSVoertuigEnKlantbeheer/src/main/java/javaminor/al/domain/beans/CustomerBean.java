@@ -40,4 +40,15 @@ public class CustomerBean implements Serializable {
     public void refresh() {
         driverRepository.update();
     }
+
+    /**
+     * Retrieve a customer by its first and last name.
+     *
+     * @param firstName first name
+     * @param lastName  last name
+     * @return the corresponding customer
+     */
+    public Customer getCustomer(final String firstName, final String lastName) {
+        return driverRepository.findByName(firstName, lastName);
+    }
 }
