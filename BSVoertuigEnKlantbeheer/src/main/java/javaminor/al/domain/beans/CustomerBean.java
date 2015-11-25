@@ -1,6 +1,7 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
+import java.util.List;
 import javaminor.al.entities.abs.Customer;
 import javaminor.al.entities.concrete.Driver;
 import javaminor.al.repository.DriverRepository;
@@ -53,4 +54,14 @@ public class CustomerBean implements Serializable {
     public Customer getCustomer(final String firstName, final String lastName) {
         return driverRepository.findByName(firstName, lastName);
     }
+
+    /**
+     * Get all drivers.
+     *
+     * @return the list
+     */
+    public List<Driver> getAll() {
+        return driverRepository.getAll();
+    }
+
 }

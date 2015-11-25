@@ -4,40 +4,40 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:param name="title" value="Maintenance"/>
+    <ui:param name="title" value="Customers"/>
     <ui:define name="content">
 
         <h:form id="viewAssignment">
-            <h:dataTable id="assignmentTable" value="#{maintenance.unfinishedAssignments}" var="rowItem"
+            <h:dataTable id="customersTable" value="#{cOverview.drivers}" var="rowItem"
                          styleClass="table table-responsive">
                 <h:column>
                     <f:facet name="header">
-                        Car
+                        Name
                     </f:facet>
                     <h:outputText
-                            value="#{rowItem.car.model} | #{rowItem.car.type}"/>
+                            value="#{rowItem.firstName} #{rowItem.lastName}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Status
+                        Email
                     </f:facet>
-                    <h:outputText value="#{rowItem.status}"/>
+                    <h:outputText value="#{rowItem.email}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Problem
+                        Phone
                     </f:facet>
-                    <h:outputText value="#{rowItem.problem}"/>
+                    <h:outputText value="#{rowItem.phone}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
                         View
                     </f:facet>
-                    <h:commandButton id="viewAssignmentBtn" type="submit" value="Modify status"
-                                     action="#{assignmentBean.viewAssignment(rowItem)}"
+                    <h:commandButton id="viewCustomerBtn" type="submit" value="View"
+                                     action="#{cView.toCustomer(rowItem)}"
                                      styleClass="btn btn-primary"/>
                 </h:column>
 
