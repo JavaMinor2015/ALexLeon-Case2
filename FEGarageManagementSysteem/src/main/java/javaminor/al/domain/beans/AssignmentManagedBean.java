@@ -57,4 +57,25 @@ public class AssignmentManagedBean implements Serializable {
         return "viewAssignment.xhtml";
     }
 
+    /**
+     * Mark an inspection done.
+     *
+     * @param assignment the assignment to mark done
+     * @return the next page in the process
+     */
+    public String markInspectionDone(final MaintenanceAssignment assignment) {
+        process.markInspectionDone(assignment);
+        return "maintenanceOverview.xhtml";
+    }
+
+    /**
+     * Mark a spot check done.
+     *
+     * @param assignment the assignment tto mark done
+     * @return the next page in the process
+     */
+    public String markSpotCheckDone(final MaintenanceAssignment assignment) {
+        process.markSpotCheckDone(assignment);
+        return "maintenanceOverview.xhtml";
+    }
 }
