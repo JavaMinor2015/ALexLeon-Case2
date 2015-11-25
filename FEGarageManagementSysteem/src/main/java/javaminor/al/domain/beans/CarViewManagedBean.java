@@ -1,6 +1,9 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javaminor.al.entities.concrete.Car;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -16,7 +19,13 @@ import lombok.Setter;
 @Setter
 public class CarViewManagedBean implements Serializable {
     private static final long serialVersionUID = 1756969611443591160L;
+
     private Car car;
+
+    private DateFormat format;
+    public CarViewManagedBean() {
+        format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    }
 
     /**
      * Set the car for the info page.
@@ -27,6 +36,16 @@ public class CarViewManagedBean implements Serializable {
     public String toCar(Car car) {
         this.car = car;
         return "viewCarInfo.xhtml";
+    }
+
+    /**
+     * Transform a Calender date into a presentable string date.
+     *
+     * @param calendar The calender
+     * @return the string
+     */
+    public String toPresentableDate(Calendar calendar) {
+        return format.format(calendar.getTime());
     }
 
 }

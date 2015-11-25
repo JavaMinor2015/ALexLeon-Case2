@@ -51,7 +51,7 @@
         <b:section id="assignmentInfo" label="Assignments: #{carView.car.assignments.size()}">
             <h:outputText value="No assignments!" rendered="#{carView.car.assignments.size() == 0}" />
             <ui:repeat value="#{carView.car.assignments}" var="assignment">
-                <b:labeledContainer label="#{assignment.plannedDate}">
+                <b:labeledContainer label="#{carView.toPresentableDate(assignment.plannedDate)}">
                     Problem: #{assignment.problem} <br />
                     Status: #{assignment.status}
                 </b:labeledContainer>
