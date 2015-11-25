@@ -13,6 +13,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import javax.validation.ConstraintViolationException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * Created by alex on 11/19/15.
@@ -20,6 +22,7 @@ import javax.validation.ConstraintViolationException;
 @Stateful
 public class MaintenanceRepository extends Repository<MaintenanceAssignment> implements Serializable {
     private static final long serialVersionUID = 3685460892410875026L;
+    private static final Logger LOGGER = LogManager.getLogger(MaintenanceRepository.class.getName());
 
     @Override
     public List<MaintenanceAssignment> getAll() {
@@ -71,8 +74,8 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
             getEm().merge(assignment);
             getEm().flush();
         } catch (ConstraintViolationException e) {
-            Collection x = e.getConstraintViolations();
-            System.out.println(x);
+            LOGGER.error("Failed to update assignment");
+            LOGGER.error(e);
         }
     }
 

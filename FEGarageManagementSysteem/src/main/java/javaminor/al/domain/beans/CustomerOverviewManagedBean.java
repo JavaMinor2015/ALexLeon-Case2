@@ -26,8 +26,9 @@ public class CustomerOverviewManagedBean implements Serializable {
 
     private List<Driver> drivers;
 
+    /** Initializes the service after bean injection. */
     @PostConstruct
-    private void init() {
+    public void init() {
         if (drivers == null) {
             drivers = customerBean.getAll();
         }

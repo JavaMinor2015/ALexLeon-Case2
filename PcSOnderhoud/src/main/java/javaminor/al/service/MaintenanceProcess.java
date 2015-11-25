@@ -1,5 +1,6 @@
 package javaminor.al.service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import javaminor.al.business.MaintenanceStatus;
@@ -18,7 +19,8 @@ import javax.ejb.Stateful;
  * Created by alex on 11/24/15.
  */
 @Stateful
-public class MaintenanceProcess {
+public class MaintenanceProcess implements Serializable {
+    private static final long serialVersionUID = 2045083431809608720L;
 
     @EJB
     private CarBean carBean;
