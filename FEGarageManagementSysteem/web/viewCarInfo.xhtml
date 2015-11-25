@@ -39,6 +39,12 @@
                     #{carView.car.driver.phone}
                 </b:labeledContainer>
 
+                <b:labeledContainer label="">
+                    <h:commandButton id="viewCustomerBtn" type="submit" value="View"
+                                     action="#{customerView.toCustomer(carView.car.driver)}"
+                                     styleClass="btn btn-primary"/>
+                </b:labeledContainer>
+
             </b:section>
         </h:form>
 

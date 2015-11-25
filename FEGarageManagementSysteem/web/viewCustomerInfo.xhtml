@@ -34,7 +34,10 @@
                 <ui:repeat value="#{customerView.driver.cars}" var="car">
                     <b:labeledContainer label="#{car.numberPlate}">
                         Model: #{car.model} <br/>
-                        Type: #{car.type}
+                        Type: #{car.type} <br />
+                        <h:commandButton id="viewCarBtn" type="submit" value="View car"
+                                         action="#{carView.toCar(car)}"
+                                         styleClass="btn btn-primary"/>
                     </b:labeledContainer>
                 </ui:repeat>
             </b:section>
