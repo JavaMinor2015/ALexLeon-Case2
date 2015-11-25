@@ -23,6 +23,10 @@ public class CarViewManagedBean implements Serializable {
     private Car car;
 
     private DateFormat format;
+
+    /**
+     * I'm a constructor, call me.
+     */
     public CarViewManagedBean() {
         format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     }

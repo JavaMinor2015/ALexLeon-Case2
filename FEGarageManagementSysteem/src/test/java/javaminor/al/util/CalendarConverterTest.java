@@ -39,10 +39,10 @@ public class CalendarConverterTest {
         assertThat(result.get(Calendar.DAY_OF_YEAR), is(testCalendar.get(Calendar.DAY_OF_YEAR)));
 
         result = (Calendar) calendarConverter.getAsObject(MockFacesContext.mockFacesContext(), null, "No date");
-        assertThat(result.get(Calendar.MINUTE), is(testCalendar.get(Calendar.MINUTE) + 1));
+        assertThat(result.get(Calendar.MINUTE), is(testCalendar.get(Calendar.MINUTE) + 5));
 
         result = (Calendar) calendarConverter.getAsObject(MockFacesContext.mockFacesContext(), null, "Oh my god this is not a date at all");
-        assertThat(result.get(Calendar.MINUTE), is(testCalendar.get(Calendar.MINUTE) + 1));
+        assertThat(result.get(Calendar.MINUTE), is(testCalendar.get(Calendar.MINUTE) + 5));
     }
 
     @Test

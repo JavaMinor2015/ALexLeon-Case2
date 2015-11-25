@@ -150,17 +150,23 @@ public class MaintenanceProcess implements Serializable {
      * Mark an assignment with an inspection as done.
      *
      * @param assignment the assignment.
-     * @return true if an audit is requested, false otherwise.
      * @throws MaintenanceException if the assignment is incorrect
      */
-    public boolean markInspectionDone(final MaintenanceAssignment assignment) {
+    public void markInspectionDone(final MaintenanceAssignment assignment) {
         if (assignment.getStatus() != MaintenanceStatus.IN_PROGRESS) {
             throw new MaintenanceException("This assignment has a status which does not allow modification", assignment);
         }
         if (!assignment.isApk()) {
             throw new MaintenanceException("This assignment is not marked for inspection.", assignment);
         }
-        return inspectionService.requiresInspection(assignment.getCar().getNumberPlate());
+
+        boolean ohnoez = inspectionService.steekproef(assignment.getCar().getNumberPlate());
+        assignment.setApk(false);
+        assignment.setSpotCheck(ohnoez);
+        if (!ohnoez) {
+            assignment.setStatus(MaintenanceStatus.FINISHED);
+        }
+        updateAssignment(assignment);
     }
 
     /**
@@ -189,5 +195,16 @@ public class MaintenanceProcess implements Serializable {
      */
     public Car getCar(final String licensePlate) {
         return carBean.getByPlate(licensePlate);
+    }
+
+    /**
+     * Marks an assignment spotcheck complete.
+     *
+     * @param assignment the assignment to mark complete
+     */
+    public void markSpotCheckDone(final MaintenanceAssignment assignment) {
+        assignment.setSpotCheck(false);
+        assignment.setStatus(MaintenanceStatus.FINISHED);
+        updateAssignment(assignment);
     }
 }

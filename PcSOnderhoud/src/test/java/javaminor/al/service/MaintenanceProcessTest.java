@@ -221,6 +221,7 @@ public class MaintenanceProcessTest {
         }
     }
 
+    //TODO: Better support new situation
     @Test
     public void testMarkInspectionDone() throws Exception {
         //Arrange
@@ -228,14 +229,13 @@ public class MaintenanceProcessTest {
         MaintenanceAssignment assignment = MaintenanceAssignment.builder()
                 .status(MaintenanceStatus.IN_PROGRESS).apk(true)
                 .car(c).build();
-        when(inspectionService.requiresInspection("A2")).thenReturn(true);
+        when(inspectionService.steekproef("A2")).thenReturn(true);
 
         //Act
-        boolean result = process.markInspectionDone(assignment);
+        process.markInspectionDone(assignment);
 
         //Assert
-        assertTrue(result);
-        verify(inspectionService, times(1)).requiresInspection("A2");
+        verify(inspectionService, times(1)).steekproef("A2");
     }
 
 

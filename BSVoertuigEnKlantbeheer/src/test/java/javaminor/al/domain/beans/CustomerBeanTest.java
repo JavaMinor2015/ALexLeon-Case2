@@ -1,5 +1,6 @@
 package javaminor.al.domain.beans;
 
+import java.util.Arrays;
 import javaminor.al.entities.abs.Customer;
 import javaminor.al.entities.concrete.Driver;
 import javaminor.al.repository.DriverRepository;
@@ -12,8 +13,7 @@ import org.junit.rules.ExpectedException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -49,8 +49,22 @@ public class CustomerBeanTest {
 
     @Test
     public void testRefresh() throws Exception {
-        doNothing().when(mockDriverRepository).save(null);
+        doNothing().when(mockDriverRepository).save(any(Driver.class));
         // no exceptions
+        customerBean.refresh(new Driver());
         customerBean.refresh(null);
+    }
+
+    @Test
+    public void testFindByName() throws Exception {
+        Driver remco = new Driver();
+        when(mockDriverRepository.findByName("a", "b")).thenReturn(remco);
+        assertThat(customerBean.getCustomer("a", "b"), is(remco));
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        when(mockDriverRepository.getAll()).thenReturn(Arrays.asList(new Driver(), new Driver()));
+        assertThat(customerBean.getAll().size(), is(2));
     }
 }

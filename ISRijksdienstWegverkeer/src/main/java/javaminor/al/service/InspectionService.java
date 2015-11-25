@@ -2,14 +2,15 @@ package javaminor.al.service;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 
 /**
  * Created by alex on 11/24/15.
  */
-@Stateful
+@Stateless
 public class InspectionService implements Serializable {
-    private static final long serialVersionUID = -2186455938041689065L;
+    //, RDWSteekproefWebService
+    private static final long serialVersionUID = 1321483742815039719L;
 
     /**
      * Dummy method.
@@ -17,7 +18,7 @@ public class InspectionService implements Serializable {
      * @param licensePlate the license plate of the inspected car.
      * @return true if inspection required, false otherwise.
      */
-    public boolean requiresInspection(final String licensePlate) {
+    public Boolean steekproef(final String licensePlate) {
         return new SecureRandom().nextBoolean();
     }
 }
