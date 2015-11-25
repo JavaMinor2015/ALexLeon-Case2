@@ -1,4 +1,3 @@
-
 package javaminor.al.service.client;
 
 import javax.jws.WebMethod;
@@ -31,10 +30,15 @@ public interface RDWSteekproefWebService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "steekproef", targetNamespace = "http://steekproef.rdw/", className = "javaminor.al.service.client.Steekproef")
-    @ResponseWrapper(localName = "steekproefResponse", targetNamespace = "http://steekproef.rdw/", className = "javaminor.al.service.client.SteekproefResponse")
-    @Action(input = "http://steekproef.rdw/RDWSteekproefWebService/steekproefRequest", output = "http://steekproef.rdw/RDWSteekproefWebService/steekproefResponse")
-    public Boolean steekproef(
+    @RequestWrapper(localName = "steekproef",
+            targetNamespace = "http://steekproef.rdw/",
+            className = "javaminor.al.service.client.Steekproef")
+    @ResponseWrapper(localName = "steekproefResponse",
+            targetNamespace = "http://steekproef.rdw/",
+            className = "javaminor.al.service.client.SteekproefResponse")
+    @Action(input = "http://steekproef.rdw/RDWSteekproefWebService/steekproefRequest",
+            output = "http://steekproef.rdw/RDWSteekproefWebService/steekproefResponse")
+    Boolean steekproef(
             @WebParam(name = "kenteken", targetNamespace = "")
             String kenteken);
 

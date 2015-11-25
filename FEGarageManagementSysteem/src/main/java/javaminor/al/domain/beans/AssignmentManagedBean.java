@@ -18,12 +18,13 @@ import lombok.Setter;
 @Setter
 public class AssignmentManagedBean implements Serializable {
     private static final long serialVersionUID = -4328773083415169251L;
+    public static final String MAINTENANCE_OVERVIEW_XHTML = "maintenanceOverview.xhtml";
+    public static final String VIEW_ASSIGNMENT_XHTML = "viewAssignment.xhtml";
 
     @EJB
     private MaintenanceProcess process;
 
     private MaintenanceAssignment assignment;
-
 
     /**
      * Finish the assignment.
@@ -33,7 +34,7 @@ public class AssignmentManagedBean implements Serializable {
     public String finish() {
         //TODO: Add inspection check
         process.markAssignmentFinished(assignment);
-        return "maintenanceOverview.xhtml";
+        return MAINTENANCE_OVERVIEW_XHTML;
     }
 
     /**
@@ -43,7 +44,7 @@ public class AssignmentManagedBean implements Serializable {
      */
     public String inProgress() {
         process.markAssignmentInProgress(assignment);
-        return "maintenanceOverview.xhtml";
+        return MAINTENANCE_OVERVIEW_XHTML;
     }
 
     /**
@@ -54,7 +55,7 @@ public class AssignmentManagedBean implements Serializable {
      */
     public String viewAssignment(MaintenanceAssignment assignment) {
         setAssignment(assignment);
-        return "viewAssignment.xhtml";
+        return VIEW_ASSIGNMENT_XHTML;
     }
 
     /**
@@ -65,7 +66,7 @@ public class AssignmentManagedBean implements Serializable {
      */
     public String markInspectionDone(final MaintenanceAssignment assignment) {
         process.markInspectionDone(assignment);
-        return "maintenanceOverview.xhtml";
+        return MAINTENANCE_OVERVIEW_XHTML;
     }
 
     /**
@@ -76,6 +77,6 @@ public class AssignmentManagedBean implements Serializable {
      */
     public String markSpotCheckDone(final MaintenanceAssignment assignment) {
         process.markSpotCheckDone(assignment);
-        return "maintenanceOverview.xhtml";
+        return MAINTENANCE_OVERVIEW_XHTML;
     }
 }

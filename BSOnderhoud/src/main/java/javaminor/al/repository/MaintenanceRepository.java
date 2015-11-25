@@ -1,7 +1,6 @@
 package javaminor.al.repository;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import javaminor.al.business.MaintenanceStatus;

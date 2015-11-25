@@ -1,4 +1,3 @@
-
 package javaminor.al.service.client;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for steekproef complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="steekproef">
  *   &lt;complexContent>
@@ -22,12 +21,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "steekproef", propOrder = {
-    "kenteken"
+        "kenteken"
 })
 public class Steekproef {
 
@@ -35,11 +32,9 @@ public class Steekproef {
 
     /**
      * Gets the value of the kenteken property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getKenteken() {
         return kenteken;
@@ -47,11 +42,9 @@ public class Steekproef {
 
     /**
      * Sets the value of the kenteken property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setKenteken(String value) {
         this.kenteken = value;

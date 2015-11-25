@@ -192,7 +192,7 @@ public class MaintenanceProcess implements Serializable {
     }
 
     /**
-     * Marks an assignment spotcheck complete
+     * Marks an assignment spotcheck complete.
      *
      * @param assignment the assignment to mark complete
      */

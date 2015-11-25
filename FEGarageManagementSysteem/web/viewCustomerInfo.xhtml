@@ -21,7 +21,7 @@
             </b:labeledContainer>
 
             <b:labeledContainer label="Address">
-                #{cView.driver.streetName} #{cView.driver.number} <br />
+                #{cView.driver.streetName} #{cView.driver.number} <br/>
                 #{cView.driver.zipCode} <br/>
                 #{cView.driver.city}
             </b:labeledContainer>
@@ -30,7 +30,7 @@
         </b:section>
         <h:form>
             <b:section id="carInfo" label="Cars: #{cView.driver.cars.size()}">
-                <h:outputText value="No cars!" rendered="#{cView.driver.cars.size() == 0}" />
+                <h:outputText value="No cars!" rendered="#{cView.driver.cars.size() == 0}"/>
                 <ui:repeat value="#{cView.driver.cars}" var="car">
                     <b:labeledContainer label="#{car.numberPlate}">
                         Model: #{car.model} <br/>

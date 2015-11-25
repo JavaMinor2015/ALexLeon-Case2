@@ -8,10 +8,8 @@ import javax.ejb.Stateless;
  * Created by alex on 11/24/15.
  */
 @Stateless
-public class InspectionService implements Serializable
-//, RDWSteekproefWebService
-{
-
+public class InspectionService implements Serializable {
+    //, RDWSteekproefWebService
     private static final long serialVersionUID = 1321483742815039719L;
 
     /**
