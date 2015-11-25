@@ -11,6 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import lombok.Getter;
 import lombok.Setter;
@@ -119,6 +120,7 @@ public class CustomerManagedBean implements Serializable {
      *
      * @return the next page in the process.
      */
+    @Transactional
     public String addCar() {
         if (driver.getFirstName() == null) {
             FacesContext.getCurrentInstance().addMessage("addCustomer:customerCreateBtn", new
@@ -127,7 +129,13 @@ public class CustomerManagedBean implements Serializable {
         }
         driver.getCars().add(car);
         car.setDriver(driver);
-        bean.refresh();
+
+        bean.getDriverRepository().getEm().persist(car);
+        bean.getDriverRepository().getEm().flush();
+
+        bean.getDriverRepository().getEm().merge(driver);
+        //car = getMaintenanceProcess().getCar(car.getNumberPlate());
+        //        bean.refresh();
         FacesContext.getCurrentInstance().addMessage("addCar:carCreateBtn", new
                 FacesMessage("Added car: " + car.getModel()));
         return "addOrder";
