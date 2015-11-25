@@ -172,7 +172,7 @@ public class MaintenanceProcess implements Serializable {
     }
 
     private void updateAssignment(MaintenanceAssignment assignment) {
-        maintenanceBean.updateAssignment(assignment);
+        maintenanceBean.refresh(assignment);
     }
 
     /**

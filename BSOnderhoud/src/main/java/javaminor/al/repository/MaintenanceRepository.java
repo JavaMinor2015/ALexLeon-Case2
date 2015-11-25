@@ -64,19 +64,4 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
         }
     }
 
-    /**
-     * Update a single MaintenanceAssignment.
-     *
-     * @param assignment The assignment
-     */
-    public void updateAssignment(MaintenanceAssignment assignment) {
-        try {
-            getEm().merge(assignment);
-            getEm().flush();
-        } catch (ConstraintViolationException e) {
-            LOGGER.error("Failed to update assignment");
-            LOGGER.error(e);
-        }
-    }
-
 }

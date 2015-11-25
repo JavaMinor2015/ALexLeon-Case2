@@ -1,5 +1,6 @@
 package javaminor.al.service;
 
+import java.io.Serializable;
 import java.security.SecureRandom;
 import javax.ejb.Stateful;
 
@@ -7,7 +8,8 @@ import javax.ejb.Stateful;
  * Created by alex on 11/24/15.
  */
 @Stateful
-public class InspectionService {
+public class InspectionService implements Serializable {
+    private static final long serialVersionUID = -2186455938041689065L;
 
     /**
      * Dummy method.

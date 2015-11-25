@@ -38,18 +38,11 @@ public class MaintenanceBean implements Serializable {
 
     /**
      * Call to ensure fresh data.
+     *
+     * @param assignment the assignment to update
      */
     public void refresh(final MaintenanceAssignment assignment) {
         maintenanceRepository.update(assignment);
-    }
-
-    /**
-     * Update a single MaintenanceAssignment.
-     *
-     * @param assignment The assignment
-     */
-    public void updateAssignment(MaintenanceAssignment assignment) {
-        maintenanceRepository.updateAssignment(assignment);
     }
 
     /**
