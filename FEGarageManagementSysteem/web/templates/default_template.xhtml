@@ -19,20 +19,17 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">GMS</a>
-            <a class="navbar-brand" href="#{request.contextPath}/addCustomer.xhtml">Add Customer</a>
-            <a class="navbar-brand" href="maintenanceOverview.xhtml">Maintenance Overview</a>
+            <a class="navbar-brand" href="#{request.contextPath}/index.html">GMS</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#{request.contextPath}/index.xhtml">Home</a></li>
+                <li><a href="#{request.contextPath}/maintenanceOverview.xhtml">Maintenance Overview</a></li>
+                <li><a href="#{request.contextPath}/customerOverview.xhtml">Customer Overview</a></li>
+                <li><a href="#{request.contextPath}/carOverview.xhtml">Car Overview</a></li>
             </ul>
-        </div><!--/.nav-collapse -->
-
+        </div>
     </div>
 </nav>
 <div class="container">
