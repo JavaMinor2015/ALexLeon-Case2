@@ -31,7 +31,6 @@ public class AssignmentManagedBean implements Serializable {
      * @return the next page
      */
     public String finish() {
-        refreshAssignment();
         //TODO: Add inspection check
         process.markAssignmentFinished(assignment);
         return "maintenanceOverview.xhtml";
@@ -43,13 +42,8 @@ public class AssignmentManagedBean implements Serializable {
      * @return the next page
      */
     public String inProgress() {
-        refreshAssignment();
         process.markAssignmentInProgress(assignment);
         return "maintenanceOverview.xhtml";
-    }
-
-    private void refreshAssignment() {
-        //assignment = process.findById(assignment.getId()).get();
     }
 
     /**
