@@ -34,15 +34,14 @@ public class MaintenanceBeanTest {
 
     @Test
     public void testCreateMaintenanceAssignment() throws Exception {
-        doNothing().when(mockMaintenanceRepository).add(any(MaintenanceAssignment.class));
-        doNothing().when(mockMaintenanceRepository).save();
+        doNothing().when(mockMaintenanceRepository).save(any(MaintenanceAssignment.class));
         maintenanceBean.createMaintenanceAssignment(new MaintenanceAssignment());
     }
 
     @Test
     public void testRefresh() throws Exception {
-        doNothing().when(mockMaintenanceRepository).save();
+        doNothing().when(mockMaintenanceRepository).save(null);
         // no exceptions
-        maintenanceBean.refresh();
+        maintenanceBean.refresh(null);
     }
 }

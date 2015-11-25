@@ -9,6 +9,7 @@
     <ui:param name="title" value="Add Order"/>
     <ui:define name="content">
         <h:form id="addOrder">
+            #{order.init()}
             <bInputText:ButterfaceInputText
                     identifier="carId"
                     label="Car plate"
