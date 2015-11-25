@@ -3,6 +3,7 @@ package javaminor.al.repository.abs;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -11,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -60,6 +62,9 @@ public class RepositoryTest {
     @Test
     public void testGetAll() throws Exception {
         assertThat(mockRepository.getAll(), is(stringList));
+
+        when(mockTypedQuery.getResultList()).thenThrow(NoResultException.class);
+        assertThat(mockRepository.getAll().size(), is(0));
     }
 
     @Test
@@ -85,5 +90,8 @@ public class RepositoryTest {
     public void testFindById() throws Exception {
         when(mockTypedQuery.getSingleResult()).thenReturn(stringList.get(0));
         assertThat(mockRepository.findById(String.class, 1L), is(stringList.get(0)));
+
+        when(mockTypedQuery.getSingleResult()).thenThrow(NoResultException.class);
+        assertThat(mockRepository.findById(String.class, 1L), is(nullValue()));
     }
 }
