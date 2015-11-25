@@ -23,6 +23,8 @@ public class CalendarConverter implements Converter {
     private static final String DATE_FORMAT = "dd-MM-yyyy HH:mm";
     private static final String DEFAULT_RESPONSE = "No date";
 
+    private static final int FIVE = 5;
+
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String dateString) {
         // dateString in format
@@ -31,7 +33,7 @@ public class CalendarConverter implements Converter {
 
         // add one minute to be in future,
         // will be overridden by actual value
-        calendar.add(Calendar.MINUTE, 1);
+        calendar.add(Calendar.MINUTE, FIVE);
 
         if (DEFAULT_RESPONSE.equals(dateString)) {
             return calendar;
