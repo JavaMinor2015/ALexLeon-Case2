@@ -7,37 +7,44 @@
     <ui:param name="title" value="Customers"/>
     <ui:define name="content">
 
-        <h:form id="viewAssignment">
-            <h:dataTable id="customersTable" value="#{custOverview.drivers}" var="rowItem"
+        <h:form id="viewCarForm">
+            <h:dataTable id="carsTable" value="#{carOverview.cars}" var="rowItem"
                          styleClass="table table-responsive">
                 <h:column>
                     <f:facet name="header">
-                        Name
+                        Numberplate
                     </f:facet>
                     <h:outputText
-                            value="#{rowItem.firstName} #{rowItem.lastName}"/>
+                            value="#{rowItem.numberPlate}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Email
+                        Model
                     </f:facet>
-                    <h:outputText value="#{rowItem.email}"/>
+                    <h:outputText value="#{rowItem.model}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Phone
+                        Type
                     </f:facet>
-                    <h:outputText value="#{rowItem.phone}"/>
+                    <h:outputText value="#{rowItem.type}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Owner
+                    </f:facet>
+                    <h:outputText value="#{rowItem.driver.lastName}, #{rowItem.driver.firstName} #{rowItem.driver.insertion}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
                         View
                     </f:facet>
-                    <h:commandButton id="viewCustomerBtn" type="submit" value="View"
-                                     action="#{customerView.toCustomer(rowItem)}"
+                    <h:commandButton id="viewCarBtn" type="submit" value="View"
+                                     action="#{carView.toCar(rowItem)}"
                                      styleClass="btn btn-primary"/>
                 </h:column>
 
