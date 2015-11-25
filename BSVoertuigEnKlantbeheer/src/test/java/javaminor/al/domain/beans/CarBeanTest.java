@@ -1,5 +1,6 @@
 package javaminor.al.domain.beans;
 
+import java.util.Arrays;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.repository.CarRepository;
 import org.junit.Before;
@@ -41,5 +42,17 @@ public class CarBeanTest {
         doNothing().when(mockCarRepository).save(null);
         // no exceptions
         carBean.refresh(null);
+    }
+
+    @Test
+    public void testAddCar() throws Exception {
+        doNothing().when(mockCarRepository).save(any(Car.class));
+        carBean.addCar(new Car());
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        when(mockCarRepository.getAll()).thenReturn(Arrays.asList(new Car(), new Car()));
+        assertThat(carBean.getAll().size(), is(2));
     }
 }
