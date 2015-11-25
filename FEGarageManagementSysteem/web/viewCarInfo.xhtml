@@ -1,0 +1,56 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://butterfaces.larmic.de/components"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components">
+    <bInputText:ButterfaceInputText/>
+    <ui:param name="title" value="#{carView.car.numberPlate} | Car"/>
+    <ui:define name="content">
+        <b:section id="car"
+                   label="Car: #{carView.car.numberPlate}"
+                   badgeText=""
+                   rendered="true">
+
+            <b:labeledContainer label="Numberplate">
+                #{carView.car.numberPlate}
+            </b:labeledContainer>
+
+            <b:labeledContainer label="Model">
+                #{carView.car.model}
+            </b:labeledContainer>
+
+            <b:labeledContainer label="Type">
+                #{carView.car.type}
+            </b:labeledContainer>
+
+            <br/>
+        </b:section>
+
+        <h:form>
+            <b:section id="driver"
+                       label="Owner">
+
+                <b:labeledContainer label="Name">
+                    #{carView.car.driver.firstName} #{carView.car.driver.insertion} #{carView.car.driver.lastName}
+                </b:labeledContainer>
+
+                <b:labeledContainer label="Phonenumber">
+                    #{carView.car.driver.phone}
+                </b:labeledContainer>
+
+            </b:section>
+        </h:form>
+
+        <b:section id="assignmentInfo" label="Assignments: #{carView.car.assignments.size()}">
+            <h:outputText value="No assignments!" rendered="#{carView.car.assignments.size() == 0}" />
+            <ui:repeat value="#{carView.car.assignments}" var="assignment">
+                <b:labeledContainer label="#{assignment.plannedDate}">
+                    Problem: #{assignment.problem} <br />
+                    Status: #{assignment.status}
+                </b:labeledContainer>
+            </ui:repeat>
+        </b:section>
+
+    </ui:define>
+</ui:composition>

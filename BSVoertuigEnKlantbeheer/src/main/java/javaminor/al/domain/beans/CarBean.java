@@ -1,6 +1,7 @@
 package javaminor.al.domain.beans;
 
 import java.io.Serializable;
+import java.util.List;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.repository.CarRepository;
 import javax.ejb.EJB;
@@ -46,5 +47,14 @@ public class CarBean implements Serializable {
     public void addCar(final Car car) {
         carRepository.add(car);
         carRepository.save();
+    }
+
+    /**
+     * Get all cars.
+     *
+     * @return the list
+     */
+    public List<Car> getAll() {
+        return carRepository.getAll();
     }
 }
