@@ -5,6 +5,7 @@ import java.util.List;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.repository.abs.Repository;
 import javax.ejb.Stateful;
+import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -57,10 +58,15 @@ public class CarRepository extends Repository<Car> implements Serializable {
             response = q.getSingleResult();
         } catch (NonUniqueResultException e) {
             LOGGER.warn(e.getMessage(), e);
-            response = q.getResultList().get(0);
+            List<Car> responses = q.getResultList();
+            if (responses != null) {
+                return responses.get(0);
+            }
+            return null;
+        } catch (NoResultException e) {
+            LOGGER.warn(e.getMessage(), e);
+            return null;
         }
-        getItemList().clear();
-        getItemList().add(response);
         return response;
     }
 }

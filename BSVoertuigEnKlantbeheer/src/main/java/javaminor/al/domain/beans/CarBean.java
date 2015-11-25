@@ -32,10 +32,12 @@ public class CarBean implements Serializable {
     }
 
     /**
-     * Call to ensure fresh data.
+     * Call to update a car.
+     *
+     * @param car the car to update.
      */
-    public void refresh() {
-        carRepository.update();
+    public void refresh(final Car car) {
+        carRepository.update(car);
     }
 
     /**
@@ -44,7 +46,6 @@ public class CarBean implements Serializable {
      * @param car the car to add.
      */
     public void addCar(final Car car) {
-        carRepository.add(car);
-        carRepository.save();
+        carRepository.save(car);
     }
 }

@@ -38,8 +38,8 @@ public class CarBeanTest {
 
     @Test
     public void testRefresh() throws Exception {
-        doNothing().when(mockCarRepository).save();
+        doNothing().when(mockCarRepository).save(null);
         // no exceptions
-        carBean.refresh();
+        carBean.refresh(null);
     }
 }

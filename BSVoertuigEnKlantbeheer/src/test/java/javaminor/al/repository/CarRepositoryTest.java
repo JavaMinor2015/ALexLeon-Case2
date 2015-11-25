@@ -69,7 +69,7 @@ public class CarRepositoryTest {
 
     @Test
     public void testSave() throws Exception {
-        carRepository.save();
+        carRepository.save(null);
         // no exception thrown
     }
 

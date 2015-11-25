@@ -31,16 +31,19 @@ public class CustomerBean implements Serializable {
      */
     public void createCustomer(final Customer customer) {
         if (customer instanceof Driver) {
-            driverRepository.add((Driver) customer);
-            driverRepository.save();
+            driverRepository.save((Driver) customer);
         }
     }
 
     /**
      * Call to ensure fresh data.
+     *
+     * @param customer the customer to update
      */
-    public void refresh() {
-        driverRepository.update();
+    public void refresh(final Customer customer) {
+        if (customer instanceof Driver) {
+            driverRepository.update((Driver) customer);
+        }
     }
 
     /**
