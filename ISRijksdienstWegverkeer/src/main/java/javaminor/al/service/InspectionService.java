@@ -2,7 +2,7 @@ package javaminor.al.service;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 
 /**
  * Created by alex on 11/24/15.
