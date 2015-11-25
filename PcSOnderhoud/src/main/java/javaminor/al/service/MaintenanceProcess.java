@@ -14,11 +14,17 @@ import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.error.MaintenanceException;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Created by alex on 11/24/15.
  */
 @Stateful
+@NoArgsConstructor
+@AllArgsConstructor
 public class MaintenanceProcess implements Serializable {
     private static final long serialVersionUID = 2045083431809608720L;
 
@@ -64,7 +70,7 @@ public class MaintenanceProcess implements Serializable {
      * @return true if the car exists, false otherwise
      */
     public boolean carExists(final String licensePlate) {
-        final Car carFound = carBean.getByPlate(licensePlate);
+        final Car carFound = getCar(licensePlate);
         return carFound != null;
     }
 
@@ -148,7 +154,7 @@ public class MaintenanceProcess implements Serializable {
      * @throws MaintenanceException if the assignment is incorrect
      */
     public boolean markInspectionDone(final MaintenanceAssignment assignment) {
-        if (assignment.getStatus() == MaintenanceStatus.NEW || assignment.getStatus() == MaintenanceStatus.FINISHED) {
+        if (assignment.getStatus() != MaintenanceStatus.IN_PROGRESS) {
             throw new MaintenanceException("This assignment has a status which does not allow modification", assignment);
         }
         if (!assignment.isApk()) {

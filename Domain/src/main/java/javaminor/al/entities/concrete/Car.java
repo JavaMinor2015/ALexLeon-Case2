@@ -46,7 +46,7 @@ public class Car extends PersistentEntity {
      * @return true if this assignment exists for this car, false otherwise
      */
     public boolean hasAssignment(final MaintenanceAssignment assignment) {
-        return assignments.contains(assignment);
+        return (assignments != null && assignments.contains(assignment));
     }
 
     /**

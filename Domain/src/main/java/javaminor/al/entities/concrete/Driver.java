@@ -43,7 +43,7 @@ public class Driver extends Customer {
      * @return true if this car exists for this customer, false otherwise
      */
     public boolean hasCar(final Car car) {
-        return cars.contains(car);
+        return (cars != null && cars.contains(car));
     }
 
     /**
