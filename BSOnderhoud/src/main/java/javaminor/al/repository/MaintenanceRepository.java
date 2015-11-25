@@ -33,7 +33,6 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
      * @return The list
      */
     public List<MaintenanceAssignment> getAllWithStatus(MaintenanceStatus... status) {
-        List<MaintenanceAssignment> assignments;
         CriteriaBuilder cb = getEm().getCriteriaBuilder();
         CriteriaQuery<MaintenanceAssignment> query = cb.createQuery(MaintenanceAssignment.class);
         Root<MaintenanceAssignment> root = query.from(MaintenanceAssignment.class);
