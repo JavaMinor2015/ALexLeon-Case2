@@ -2,7 +2,6 @@ package javaminor.al.domain.beans;
 
 import java.io.Serializable;
 import javaminor.al.entities.concrete.Car;
-import javaminor.al.entities.concrete.Driver;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import lombok.Getter;

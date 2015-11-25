@@ -3,7 +3,6 @@ package javaminor.al.domain.beans;
 import java.io.Serializable;
 import java.util.List;
 import javaminor.al.entities.concrete.Car;
-import javaminor.al.entities.concrete.Driver;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

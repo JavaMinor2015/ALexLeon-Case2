@@ -6,7 +6,6 @@ import javaminor.al.entities.concrete.Driver;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;

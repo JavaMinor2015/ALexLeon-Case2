@@ -1,7 +1,6 @@
 package javaminor.al.repository;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import javaminor.al.business.MaintenanceStatus;
@@ -12,7 +11,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
-import javax.validation.ConstraintViolationException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
