@@ -33,15 +33,14 @@ public class MaintenanceBean implements Serializable {
      * @param assignment the assignment to create
      */
     public void createMaintenanceAssignment(final MaintenanceAssignment assignment) {
-        maintenanceRepository.add(assignment);
-        maintenanceRepository.save();
+        maintenanceRepository.save(assignment);
     }
 
     /**
      * Call to ensure fresh data.
      */
-    public void refresh() {
-        maintenanceRepository.save();
+    public void refresh(final MaintenanceAssignment assignment) {
+        maintenanceRepository.update(assignment);
     }
 
     /**

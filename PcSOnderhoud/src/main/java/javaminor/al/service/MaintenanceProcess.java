@@ -82,7 +82,7 @@ public class MaintenanceProcess implements Serializable {
                 driver.addCar(car);
             }
             car.setDriver(driver);
-            carBean.refresh();
+            carBean.refresh(car);
         }
         // otherwise silently ignore
     }
@@ -103,8 +103,8 @@ public class MaintenanceProcess implements Serializable {
             car.addAssignment(assignment);
         }
         assignment.setCar(car);
-        carBean.refresh();
-        maintenanceBean.refresh();
+        carBean.refresh(car);
+        maintenanceBean.refresh(assignment);
     }
 
     /**

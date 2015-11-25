@@ -27,6 +27,7 @@ public class CustomerManagedBeanTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private CustomerBean mockedBean;
+    private CarBean mockedCarBean;
     private Driver mockedDriver;
     private Car mockedCar;
     private List<Car> carList;
@@ -39,6 +40,7 @@ public class CustomerManagedBeanTest {
     @Before
     public void setUp() {
         mockedBean = mock(CustomerBean.class);
+        mockedCarBean = mock(CarBean.class);
         mockedDriver = mock(Driver.class);
         mockedCar = mock(Car.class);
         carList = new ArrayList<>();
@@ -46,6 +48,7 @@ public class CustomerManagedBeanTest {
         customerManagedBean = new CustomerManagedBean();
         customerManagedBean.init();
         customerManagedBean.setBean(mockedBean);
+        customerManagedBean.setCarBean(mockedCarBean);
         customerManagedBean.setDriver(mockedDriver);
         customerManagedBean.setCar(mockedCar);
 
@@ -82,6 +85,9 @@ public class CustomerManagedBeanTest {
 
     @Test
     public void testAddCar() throws Exception {
+
+        doNothing().when(mockedCarBean).addCar(any(Car.class));
+
         // driver has not been properly created yet
         assertThat(customerManagedBean.addCar(), is("addCustomer"));
 

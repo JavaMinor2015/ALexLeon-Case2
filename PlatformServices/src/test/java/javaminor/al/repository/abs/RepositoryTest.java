@@ -65,19 +65,19 @@ public class RepositoryTest {
     @Test
     public void testSave() throws Exception {
         // no exceptions
-        mockRepository.save();
+        mockRepository.save(null);
     }
 
     @Test
     public void testUpdate() throws Exception {
         // no exceptions
-        mockRepository.update();
+        mockRepository.update(null);
     }
 
 
     @Test
     public void testAdd() throws Exception {
-        mockRepository.add(TEST_STRING);
+        mockRepository.save(TEST_STRING);
         assertThat(mockRepository.getAll().get(0), is(TEST_STRING));
     }
 

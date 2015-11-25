@@ -6,6 +6,7 @@ import javaminor.al.entities.concrete.Driver;
 import javaminor.al.repository.abs.Repository;
 import javax.ejb.Stateful;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -47,20 +48,28 @@ public class DriverRepository extends Repository<Driver> implements Serializable
      * @return the corresponding customer
      */
     public Driver findByName(final String firstName, final String lastName) {
+        Driver response;
+        CriteriaBuilder cb = getEm().getCriteriaBuilder();
+        CriteriaQuery<Driver> cq = cb.createQuery(Driver.class);
+        Root<Driver> root = cq.from(Driver.class);
+        Predicate firstPred = cb.equal(root.get("firstName"), firstName);
+        Predicate lastPred = cb.equal(root.get("lastName"), lastName);
+        Predicate bothPred = cb.and(firstPred, lastPred);
+        cq.where(bothPred);
+        TypedQuery<Driver> q = getEm().createQuery(cq);
         try {
-            CriteriaBuilder cb = getEm().getCriteriaBuilder();
-            CriteriaQuery<Driver> cq = cb.createQuery(Driver.class);
-            Root<Driver> root = cq.from(Driver.class);
-            Predicate firstPred = cb.equal(root.get("firstName"), firstName);
-            Predicate lastPred = cb.equal(root.get("lastName"), lastName);
-            Predicate bothPred = cb.and(firstPred, lastPred);
-            cq.where(bothPred);
-            TypedQuery<Driver> q = getEm().createQuery(cq);
-            Driver response = q.getSingleResult();
-            return response;
+            response = q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            LOGGER.warn(e.getMessage(), e);
+            List<Driver> responses = q.getResultList();
+            if (responses != null) {
+                return responses.get(0);
+            }
+            return null;
         } catch (NoResultException e) {
             LOGGER.info(e.getMessage(), e);
             return null;
         }
+        return response;
     }
 }

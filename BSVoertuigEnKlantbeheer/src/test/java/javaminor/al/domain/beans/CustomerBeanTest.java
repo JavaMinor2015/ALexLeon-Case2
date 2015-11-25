@@ -42,16 +42,15 @@ public class CustomerBeanTest {
 
     @Test
     public void testCreateCustomer() throws Exception {
-        doNothing().when(mockDriverRepository).add(any(Driver.class));
-        doNothing().when(mockDriverRepository).save();
+        doNothing().when(mockDriverRepository).save(any(Driver.class));
         customerBean.createCustomer(new Driver());
         customerBean.createCustomer(new Customer());
     }
 
     @Test
     public void testRefresh() throws Exception {
-        doNothing().when(mockDriverRepository).save();
+        doNothing().when(mockDriverRepository).save(null);
         // no exceptions
-        customerBean.refresh();
+        customerBean.refresh(null);
     }
 }
