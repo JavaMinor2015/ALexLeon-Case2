@@ -29,7 +29,7 @@ public class MaintenanceAssignment extends PersistentEntity {
 
     private boolean apk;
 
-    private boolean spotCheck;
+    private Boolean spotCheck;
 
     private String problem;
 
@@ -40,5 +40,4 @@ public class MaintenanceAssignment extends PersistentEntity {
 
     @ManyToOne
     private Car car;
-
 }
