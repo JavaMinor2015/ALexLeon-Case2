@@ -1,0 +1,41 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components"
+>
+    >
+    <bInputText:ButterfaceInputText/>
+    <h:head>
+
+    </h:head>
+    <ui:param name="title" value="View Assignment"/>
+    <ui:define name="content">
+        <h:form id="viewAssignment">
+            <bInputText:ButterfaceInputText
+                    identifier="Assignment"
+                    label="Assignment"
+                    required="false"
+                    value="#{assignmentBean.assignment}"
+                    disabled="true"
+            />
+            <bInputText:ButterfaceInputText
+                    identifier="Status"
+                    label="Status"
+                    required="false"
+                    value="#{assignmentBean.assignment.status}"
+                    disabled="true"
+            />
+
+            <br/>
+            <h:commandButton id="inProgressBtn" type="submit" value="In progress"
+                             action="#{assignmentBean.inProgress()}"
+                             styleClass="btn btn-primary"
+                             rendered="#{assignmentBean.assignment.status == 'NEW'}"/>
+            <h:commandButton id="finishBtn" type="submit" value="Finish"
+                             action="#{assignmentBean.finish()}"
+                             styleClass="btn btn-primary"
+                             rendered="#{assignmentBean.assignment.status == 'IN_PROGRESS'}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

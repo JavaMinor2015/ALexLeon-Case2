@@ -1,5 +1,6 @@
 package javaminor.al.domain.beans;
 
+import java.util.Arrays;
 import javaminor.al.entities.concrete.Car;
 import javaminor.al.repository.CarRepository;
 import org.junit.Before;
@@ -31,15 +32,27 @@ public class CarBeanTest {
 
     @Test
     public void testGetByPlate() throws Exception {
-        when(mockCarRepository.findByPlate("AA")).thenReturn(new Car("AA", null, null, null));
+        when(mockCarRepository.findByPlate("AA")).thenReturn(new Car("AA", null, null, null, null));
         assertThat(carBean.getByPlate("AA").getNumberPlate(), is("AA"));
 
     }
 
     @Test
     public void testRefresh() throws Exception {
-        doNothing().when(mockCarRepository).save();
+        doNothing().when(mockCarRepository).save(null);
         // no exceptions
-        carBean.refresh();
+        carBean.refresh(null);
+    }
+
+    @Test
+    public void testAddCar() throws Exception {
+        doNothing().when(mockCarRepository).save(any(Car.class));
+        carBean.addCar(new Car());
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        when(mockCarRepository.getAll()).thenReturn(Arrays.asList(new Car(), new Car()));
+        assertThat(carBean.getAll().size(), is(2));
     }
 }

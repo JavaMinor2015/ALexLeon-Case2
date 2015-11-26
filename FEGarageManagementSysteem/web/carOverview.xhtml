@@ -1,0 +1,56 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:param name="title" value="Customers"/>
+    <ui:define name="content">
+
+        <h:form id="viewCarForm">
+            <h:dataTable id="carsTable" value="#{carOverview.cars}" var="rowItem"
+                         styleClass="table table-responsive">
+                <h:column>
+                    <f:facet name="header">
+                        Numberplate
+                    </f:facet>
+                    <h:outputText
+                            value="#{rowItem.numberPlate}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Model
+                    </f:facet>
+                    <h:outputText value="#{rowItem.model}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Type
+                    </f:facet>
+                    <h:outputText value="#{rowItem.type}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Owner
+                    </f:facet>
+                    <h:outputText value="#{rowItem.driver.lastName}, #{rowItem.driver.firstName} #{rowItem.driver.insertion}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        View
+                    </f:facet>
+                    <h:commandButton id="viewCarBtn" type="submit" value="View"
+                                     action="#{carView.toCar(rowItem)}"
+                                     styleClass="btn btn-primary"/>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -3,14 +3,17 @@ package javaminor.al.repository.abs;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import lombok.AccessLevel;
+import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * Created by alex on 11/9/15.
@@ -23,11 +26,10 @@ import lombok.Setter;
 @Setter
 public abstract class Repository<T> {
 
-    @PersistenceContext(unitName = "GMSDerbyPersist")
-    private EntityManager em;
+    private static final Logger LOGGER = LogManager.getLogger(Repository.class.getName());
 
-    @Getter(AccessLevel.PROTECTED)
-    private List<T> itemList = new ArrayList<>();
+    @PersistenceContext(unitName = "GMSOraclePersist")
+    private EntityManager em;
 
     /**
      * Retrieve all items.
@@ -35,32 +37,24 @@ public abstract class Repository<T> {
     public abstract List<T> getAll();
 
     /**
-     * Persist all items in this repository.
-     */
-    public void save() {
-        itemList.forEach(em::persist);
-        em.flush();
-    }
-
-    /**
-     * Update all items in this repository.
-     */
-    public void update() {
-        itemList.forEach(em::merge);
-        em.flush();
-    }
-
-    /**
-     * Add an item to this repository.
-     * <p>
-     * Note: call {@link #save()} to persist added items.
+     * Add an item to the repository and persist.
      *
-     * @param item the item to add.
+     * @param item the item to save
      */
-    public void add(final T item) {
+    @Transactional
+    public void save(final T item) {
         em.persist(item);
-        itemList.clear();
-        itemList.add(item);
+        em.flush();
+    }
+
+    /**
+     * Update an item in the repository.
+     *
+     * @param item the item to update.
+     */
+    @Transactional
+    public void update(final T item) {
+        em.merge(item);
     }
 
     /**
@@ -70,15 +64,17 @@ public abstract class Repository<T> {
      * @return a list of items, empty if none found
      */
     protected List<T> getAll(final Class<T> clazz) {
-        List<T> response;
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(clazz);
         Root<T> t = cq.from(clazz);
         cq.select(t);
         TypedQuery<T> q = em.createQuery(cq);
-        response = q.getResultList();
-        itemList = response;
-        return response;
+        try {
+            return q.getResultList();
+        } catch (NoResultException e) {
+            LOGGER.warn(e);
+            return new ArrayList<>();
+        }
     }
 
     /**
@@ -86,7 +82,7 @@ public abstract class Repository<T> {
      *
      * @param clazz    the item's class.
      * @param idToFind the id to find
-     * @return the item, or null
+     * @return the item, or null if not found
      */
     protected T findById(final Class<T> clazz, final Long idToFind) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -97,9 +93,11 @@ public abstract class Repository<T> {
                 cb.equal(root.get("id"), idToFind)
         );
         TypedQuery<T> q = em.createQuery(cq);
-        T response = q.getSingleResult();
-        itemList.clear();
-        itemList.add(response);
-        return response;
+        try {
+            return q.getSingleResult();
+        } catch (NoResultException e) {
+            LOGGER.warn(e);
+            return null;
+        }
     }
 }

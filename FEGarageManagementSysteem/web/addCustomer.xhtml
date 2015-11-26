@@ -9,8 +9,6 @@
     <ui:param name="title" value="Add Customer"/>
     <ui:define name="content">
         <h:form id="addCustomer">
-            <!--because of session scope-->
-            #{customer.init()}
             <b:radioBox id="input"
                         label="label"
                         hideLabel="false"
@@ -64,7 +62,7 @@
                     identifier="number"
                     label="Number"
                     placeholder="Enter number..."
-                    value="#{customer.driver.number}"/>
+                    value="#{customer.driver.streetNumber}"/>
             <bInputText:ButterfaceInputText
                     identifier="phone"
                     label="Phone"

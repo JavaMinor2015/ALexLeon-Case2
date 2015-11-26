@@ -11,6 +11,7 @@ import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by alex on 11/23/15.
@@ -33,16 +34,17 @@ public class CalendarConverterTest {
 
     @Test
     public void testGetAsObject() throws Exception {
+        testCalendar = Calendar.getInstance();
         //"dd-MM-yyyy HH:mm"
         Calendar result = (Calendar) calendarConverter.getAsObject(MockFacesContext.mockFacesContext(), null, testString);
         assertThat(result.get(Calendar.DAY_OF_MONTH), is(testCalendar.get(Calendar.DAY_OF_MONTH)));
         assertThat(result.get(Calendar.DAY_OF_YEAR), is(testCalendar.get(Calendar.DAY_OF_YEAR)));
 
         result = (Calendar) calendarConverter.getAsObject(MockFacesContext.mockFacesContext(), null, "No date");
-        assertThat(result.get(Calendar.MINUTE), is(testCalendar.get(Calendar.MINUTE) + 1));
+        assertTrue(result.after(testCalendar));
 
         result = (Calendar) calendarConverter.getAsObject(MockFacesContext.mockFacesContext(), null, "Oh my god this is not a date at all");
-        assertThat(result.get(Calendar.MINUTE), is(testCalendar.get(Calendar.MINUTE) + 1));
+        assertTrue(result.after(testCalendar));
     }
 
     @Test

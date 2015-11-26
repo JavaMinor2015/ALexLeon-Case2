@@ -16,7 +16,6 @@ import javax.validation.Payload;
         ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidZipCode {
-    // TODO i18n
 
     /**
      * The message to return in case of failure.

@@ -1,0 +1,49 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:param name="title" value="Customers"/>
+    <ui:define name="content">
+
+        <h:form id="viewAssignment">
+            <h:dataTable id="customersTable" value="#{custOverview.drivers}" var="rowItem"
+                         styleClass="table table-responsive">
+                <h:column>
+                    <f:facet name="header">
+                        Name
+                    </f:facet>
+                    <h:outputText
+                            value="#{rowItem.firstName} #{rowItem.lastName}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Email
+                    </f:facet>
+                    <h:outputText value="#{rowItem.email}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Phone
+                    </f:facet>
+                    <h:outputText value="#{rowItem.phone}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        View
+                    </f:facet>
+                    <h:commandButton id="viewCustomerBtn" type="submit" value="View"
+                                     action="#{customerView.toCustomer(rowItem)}"
+                                     styleClass="btn btn-primary"/>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

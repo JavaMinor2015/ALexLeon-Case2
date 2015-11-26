@@ -33,6 +33,8 @@ public class OrderManagedBean implements Serializable {
     @EJB
     private CarBean carBean;
 
+    private Car car;
+
     private MaintenanceAssignment maintenanceAssignment;
 
     /**
@@ -42,6 +44,7 @@ public class OrderManagedBean implements Serializable {
     public void init() {
         maintenanceAssignment = new MaintenanceAssignment();
         maintenanceAssignment.setStatus(MaintenanceStatus.NEW);
+        maintenanceAssignment.setExecutedWork(new ArrayList<>());
     }
 
     /**
@@ -51,8 +54,7 @@ public class OrderManagedBean implements Serializable {
      * @return the next page in the process.
      */
     public String addOrder(final String numberPlate) {
-        // TODO move this stuff to the OnderhoudProces module
-        Car car = carBean.getByPlate(numberPlate);
+        car = carBean.getByPlate(numberPlate);
         if (car == null) {
             FacesContext.getCurrentInstance().addMessage("addOrder:orderCreateBtn", new
                     FacesMessage("Invalid license plate"));
@@ -70,7 +72,9 @@ public class OrderManagedBean implements Serializable {
         }
 
         car.getAssignments().add(maintenanceAssignment);
-        carBean.refresh();
+        maintenanceAssignment.setCar(car);
+        carBean.refresh(car);
         return "maintenanceOverview";
     }
+
 }

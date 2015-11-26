@@ -1,0 +1,38 @@
+<ui:composition template="/templates/default_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://butterfaces.larmic.de/components"
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components">
+    <bInputText:ButterfaceInputText/>
+    <ui:param name="title" value="Add Customer"/>
+    <ui:define name="content">
+        <h:form id="viewCustomer">
+            <b:section id="customer"
+                       label="#{customer.driver.firstName} #{customer.driver.lastName}"
+                       badgeText=""
+                       rendered="true">
+                <ui:repeat value="#{customer.driver.cars}" var="car">
+
+                    <b>
+                        #{car.numberPlate}
+                    </b>
+                    #{car.type} / #{car.model}
+                    <h:commandButton id="carSelectBtn_#{car.id}" type="submit" value="Add Assignment"
+                                     action="#{customer.setTheCar(car.numberPlate)}"
+                                     styleClass="btn btn-success"/>
+                    <br/>
+                    <br/>
+                </ui:repeat>
+                <br/>
+            </b:section>
+            <br/>
+            <br/>
+        </h:form>
+        <h:form>
+            <h:commandButton id="carCreateBtn" type="submit" value="Add a Car"
+                             action="addCar"
+                             styleClass="btn btn-success"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

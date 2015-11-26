@@ -1,9 +1,26 @@
 <ui:composition template="/templates/default_template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
->
+                xmlns:bInputText="http://java.sun.com/jsf/composite/components">
+    <bInputText:ButterfaceInputText/>
     <ui:param name="title" value="Home"/>
     <ui:define name="content">
-
+        <h2>Add assignment</h2>
+        <h:form id="selectCustomer">
+            #{customer.init()}
+            <bInputText:ButterfaceInputText
+                    identifier="firstName"
+                    label="First Name"
+                    placeholder="Enter first name..."
+                    value="#{customer.driver.firstName}"/>
+            <bInputText:ButterfaceInputText
+                    identifier="lastName"
+                    label="Last Name"
+                    placeholder="Enter last name..."
+                    value="#{customer.driver.lastName}"/>
+            <h:commandButton id="customerCheckBtn" type="submit" value="Continue" action="#{customer.checkCustomer()}"
+                             styleClass="btn btn-primary"/>
+        </h:form>
     </ui:define>
 </ui:composition>

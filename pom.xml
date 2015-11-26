@@ -7,7 +7,7 @@
     <groupId>GMS.Leon.Alex</groupId>
     <artifactId>T2</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-Wacky</version>
     <modules>
         <module>FEGarageManagementSysteem</module>
         <module>PcSOnderhoud</module>

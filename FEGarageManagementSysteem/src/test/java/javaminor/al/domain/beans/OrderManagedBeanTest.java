@@ -45,15 +45,18 @@ public class OrderManagedBeanTest {
         mockedCarBean = mock(CarBean.class);
         mockedMaintenanceBean = mock(MaintenanceBean.class);
         mockedAssignment = mock(MaintenanceAssignment.class);
-        testCar = new Car("AA", "BB", "CC", new ArrayList<>());
+        testCar = new Car("AA", "BB", "CC", new ArrayList<>(), null);
         assignmentList = new ArrayList<>();
         assignmentList.add(mockedAssignment);
         orderManagedBean = new OrderManagedBean();
         orderManagedBean.init();
+        orderManagedBean.setCar(testCar);
+
         orderManagedBean.setCarBean(mockedCarBean);
         orderManagedBean.setMaintenanceAssignment(mockedAssignment);
         orderManagedBean.setMaintenanceBean(mockedMaintenanceBean);
 
+        assertThat(orderManagedBean.getCar(), is(testCar));
         assertThat(orderManagedBean.getMaintenanceAssignment(), is(mockedAssignment));
         assertThat(orderManagedBean.getCarBean(), is(mockedCarBean));
         assertThat(orderManagedBean.getMaintenanceBean(), is(mockedMaintenanceBean));

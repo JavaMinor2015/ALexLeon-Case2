@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javaminor.al.entities.concrete.Driver;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -66,5 +69,32 @@ public class DriverRepositoryTest {
     public void testGetById() throws Exception {
         when(mockTypedQuery.getSingleResult()).thenReturn(driverList.get(0));
         assertThat(driverRepository.getById(1), is(driverList.get(0)));
+    }
+
+    @Test
+    public void testFindByName() throws Exception {
+        when(mockTypedQuery.getSingleResult()).thenReturn(driverList.get(0));
+        assertThat(driverRepository.findByName("woop", "woop"), is(driverList.get(0)));
+    }
+
+
+    @Test
+    public void testFindByNameErrorZero() {
+        when(mockTypedQuery.getSingleResult()).thenThrow(NonUniqueResultException.class);
+        when(mockTypedQuery.getResultList()).thenReturn(driverList);
+        assertThat(driverRepository.findByName("woop", "woop"), is(driverList.get(0)));
+    }
+
+    @Test
+    public void testFindByNameErrorOne() {
+        when(mockTypedQuery.getSingleResult()).thenThrow(NonUniqueResultException.class);
+        when(mockTypedQuery.getResultList()).thenReturn(null);
+        assertThat(driverRepository.findByName("woop", "woop"), is(nullValue()));
+    }
+
+    @Test
+    public void testFindByNameErrorTwo() {
+        when(mockTypedQuery.getSingleResult()).thenThrow(NoResultException.class);
+        assertThat(driverRepository.findByName("woop", "woop"), is(nullValue()));
     }
 }

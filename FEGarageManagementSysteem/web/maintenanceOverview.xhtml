@@ -7,38 +7,63 @@
     <ui:param name="title" value="Maintenance"/>
     <ui:define name="content">
 
-        <h:dataTable id="assignmentTable" value="#{maintenance.assignments}" var="rowItem" border="1"
-                     styleClass="table table-responsive">
-            <h:column>
-                <f:facet name="header">
-                    Car
-                </f:facet>
-                <h:outputText
-                        value="#{maintenance.getLinkedCar(rowItem).model} | #{maintenance.getLinkedCar(rowItem).type}"/>
-            </h:column>
+        <h:form id="viewAssignment">
+            <h:dataTable id="assignmentTable" value="#{maintenance.unfinishedAssignments}" var="rowItem"
+                         styleClass="table table-responsive">
+                <h:column>
+                    <f:facet name="header">
+                        Car
+                    </f:facet>
+                    <h:outputText
+                            value="#{rowItem.car.model} | #{rowItem.car.type}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    Status
-                </f:facet>
-                <h:outputText value="#{rowItem.status}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Status
+                    </f:facet>
+                    <h:outputText value="#{rowItem.status}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    Problem
-                </f:facet>
-                <h:outputText value="#{rowItem.problem}"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Problem
+                    </f:facet>
+                    <h:outputText value="#{rowItem.problem}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    View
-                </f:facet>
-                <h:outputText value="INSERT URL"/>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Inspection
+                    </f:facet>
+                    <h:commandButton id="insAssignmentBtn" type="submit" value="Mark inspection done"
+                                     action="#{assignmentBean.markInspectionDone(rowItem)}"
+                                     rendered="#{rowItem.apk and rowItem.status == 'IN_PROGRESS'}"
+                                     styleClass="btn btn-primary"/>
+                </h:column>
 
-        </h:dataTable>
+                <h:column>
+                    <f:facet name="header">
+                        Spot Check
+                    </f:facet>
+                    <h:commandButton id="spotCheckAssignmentBtn" type="submit" value="Mark spot check done"
+                                     action="#{assignmentBean.markSpotCheckDone(rowItem)}"
+                                     rendered="#{rowItem.spotCheck and rowItem.status == 'IN_PROGRESS'}"
+                                     styleClass="btn btn-primary"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        View
+                    </f:facet>
+                    <h:commandButton id="viewAssignmentBtn" type="submit" value="Modify status"
+                                     action="#{assignmentBean.viewAssignment(rowItem)}"
+                                     styleClass="btn btn-primary"
+                                     rendered="#{not rowItem.spotCheck}"/>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
 
     </ui:define>
 

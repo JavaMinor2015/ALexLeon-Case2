@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javaminor.al.entities.concrete.Car;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -69,18 +71,33 @@ public class CarRepositoryTest {
 
     @Test
     public void testSave() throws Exception {
-        carRepository.save();
+        carRepository.save(null);
         // no exception thrown
     }
 
     @Test
     public void testFindByPlate() {
-        when(mockTypedQuery.getSingleResult())
-                .thenReturn(carList.get(0))
-                .thenThrow(NonUniqueResultException.class);
+        when(mockTypedQuery.getSingleResult()).thenReturn(carList.get(0));
         assertThat(carRepository.findByPlate("woop"), is(carList.get(0)));
+    }
 
+    @Test
+    public void testFindByPlateErrorZero() {
+        when(mockTypedQuery.getSingleResult()).thenThrow(NonUniqueResultException.class);
         when(mockTypedQuery.getResultList()).thenReturn(carList);
         assertThat(carRepository.findByPlate("woop"), is(carList.get(0)));
+    }
+
+    @Test
+    public void testFindByPlateErrorOne() {
+        when(mockTypedQuery.getSingleResult()).thenThrow(NonUniqueResultException.class);
+        when(mockTypedQuery.getResultList()).thenReturn(null);
+        assertThat(carRepository.findByPlate("woop"), is(nullValue()));
+    }
+
+    @Test
+    public void testFindByPlateErrorTwo() {
+        when(mockTypedQuery.getSingleResult()).thenThrow(NoResultException.class);
+        assertThat(carRepository.findByPlate("woop"), is(nullValue()));
     }
 }

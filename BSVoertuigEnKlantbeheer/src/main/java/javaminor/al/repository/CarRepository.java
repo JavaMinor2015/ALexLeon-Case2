@@ -1,13 +1,11 @@
 package javaminor.al.repository;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javaminor.al.entities.concrete.Car;
-import javaminor.al.entities.concrete.MaintenanceAssignment;
 import javaminor.al.repository.abs.Repository;
 import javax.ejb.Stateful;
+import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -60,44 +58,15 @@ public class CarRepository extends Repository<Car> implements Serializable {
             response = q.getSingleResult();
         } catch (NonUniqueResultException e) {
             LOGGER.warn(e.getMessage(), e);
-            response = q.getResultList().get(0);
+            List<Car> responses = q.getResultList();
+            if (responses != null) {
+                return responses.get(0);
+            }
+            return null;
+        } catch (NoResultException e) {
+            LOGGER.warn(e.getMessage(), e);
+            return null;
         }
-        getItemList().clear();
-        getItemList().add(response);
         return response;
     }
-
-    /**
-     * Find all cars by assignments.
-     *
-     * @param assignments The assignments
-     * @return ID of MaintenanceAssignment => Car
-     */
-    public Map<Long, Car> findByAssignments(List<MaintenanceAssignment> assignments) {
-        //TODO: Use actual JPQL
-        Map<Long, Car> cars = new HashMap<>();
-        for (Car car : getAll()) {
-            find(assignments, cars, car, false);
-        }
-        return cars;
-    }
-
-    // eww
-    private void find(final List<MaintenanceAssignment> assignments, final Map<Long, Car> cars, final Car car, boolean added) {
-        boolean b = added;
-        for (MaintenanceAssignment maintenanceAssignment : car.getAssignments()) {
-            for (MaintenanceAssignment assignment : assignments) {
-                if (assignment.getId().equals(maintenanceAssignment.getId())) {
-                    cars.put(assignment.getId(), car);
-                    b = true;
-                    break;
-                }
-            }
-            if (b) {
-                break;
-            }
-        }
-    }
-
-
 }

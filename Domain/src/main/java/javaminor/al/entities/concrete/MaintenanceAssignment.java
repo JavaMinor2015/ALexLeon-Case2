@@ -20,6 +20,7 @@ import lombok.*;
 public class MaintenanceAssignment extends PersistentEntity {
     private static final long serialVersionUID = 2243631662528928856L;
 
+    //TODO: It also enforces this constraint on UPDATE...
     @Future
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar plannedDate;
@@ -28,13 +29,15 @@ public class MaintenanceAssignment extends PersistentEntity {
 
     private boolean apk;
 
-    private boolean spotCheck;
+    private Boolean spotCheck;
 
     private String problem;
 
     private MaintenanceStatus status;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "assignment")
     private List<MaintenanceWork> executedWork;
 
+    @ManyToOne
+    private Car car;
 }
