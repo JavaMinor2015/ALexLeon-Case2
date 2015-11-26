@@ -33,7 +33,7 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
      * @param status One or more status
      * @return The list
      */
-    public List<MaintenanceAssignment> getAllWithStatus(MaintenanceStatus... status) {
+    public List<MaintenanceAssignment> getAllWithStatus(final MaintenanceStatus... status) {
         CriteriaBuilder cb = getEm().getCriteriaBuilder();
         CriteriaQuery<MaintenanceAssignment> query = cb.createQuery(MaintenanceAssignment.class);
         Root<MaintenanceAssignment> root = query.from(MaintenanceAssignment.class);
@@ -53,7 +53,7 @@ public class MaintenanceRepository extends Repository<MaintenanceAssignment> imp
      * @param id The ID
      * @return The MaintenanceAssignment if found
      */
-    public Optional<MaintenanceAssignment> findById(long id) {
+    public Optional<MaintenanceAssignment> findById(final long id) {
         MaintenanceAssignment assignment = findById(MaintenanceAssignment.class, id);
         if (assignment == null) {
             return Optional.empty();
