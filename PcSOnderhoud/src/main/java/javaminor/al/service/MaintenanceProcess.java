@@ -15,9 +15,7 @@ import javaminor.al.error.MaintenanceException;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * Created by alex on 11/24/15.
