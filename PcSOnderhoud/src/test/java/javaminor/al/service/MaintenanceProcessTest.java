@@ -278,7 +278,7 @@ public class MaintenanceProcessTest {
 
         //Assert
         assertEquals(MaintenanceStatus.FINISHED, assignment.getStatus());
-        //assertEquals(false, assignment.getSpotCheck()); //TODO: Uncomment this line after Oraclefication
+        assertEquals(false, assignment.getSpotCheck());
         verify(maintenanceBean, times(1)).refresh(assignment);
     }
 
