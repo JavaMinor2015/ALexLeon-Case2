@@ -221,7 +221,6 @@ public class MaintenanceProcessTest {
         }
     }
 
-    //TODO: Better support new situation
     @Test
     public void testMarkInspectionDone() throws Exception {
         //Arrange
@@ -266,6 +265,20 @@ public class MaintenanceProcessTest {
 
         //Arrange
         assertEquals(MaintenanceStatus.FINISHED, assignment.getStatus());
+        verify(maintenanceBean, times(1)).refresh(assignment);
+    }
+
+    @Test
+    public void testMarkSpotCheckDone() {
+        //Arrange
+        MaintenanceAssignment assignment = MaintenanceAssignment.builder().status(MaintenanceStatus.IN_PROGRESS).spotCheck(true).build();
+
+        //Act
+        process.markSpotCheckDone(assignment);
+
+        //Assert
+        assertEquals(MaintenanceStatus.FINISHED, assignment.getStatus());
+        //assertEquals(false, assignment.getSpotCheck()); //TODO: Uncomment this line after Oraclefication
         verify(maintenanceBean, times(1)).refresh(assignment);
     }
 

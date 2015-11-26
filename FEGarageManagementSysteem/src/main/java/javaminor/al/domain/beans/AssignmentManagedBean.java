@@ -32,7 +32,6 @@ public class AssignmentManagedBean implements Serializable {
      * @return the next page
      */
     public String finish() {
-        //TODO: Add inspection check
         process.markAssignmentFinished(assignment);
         return MAINTENANCE_OVERVIEW_XHTML;
     }

@@ -54,7 +54,6 @@ public class OrderManagedBean implements Serializable {
      * @return the next page in the process.
      */
     public String addOrder(final String numberPlate) {
-        // TODO move this stuff to the OnderhoudProces module
         car = carBean.getByPlate(numberPlate);
         if (car == null) {
             FacesContext.getCurrentInstance().addMessage("addOrder:orderCreateBtn", new
