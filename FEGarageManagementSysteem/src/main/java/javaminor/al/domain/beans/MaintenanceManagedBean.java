@@ -17,16 +17,13 @@ import lombok.Setter;
 @RequestScoped
 @Getter
 @Setter
-public class MaintenanceManangedBean implements Serializable {
+public class MaintenanceManagedBean implements Serializable {
     private static final long serialVersionUID = -6345558917227891127L;
 
     private List<MaintenanceAssignment> assignments;
 
     @EJB
     private MaintenanceProcess maintenanceProcess;
-
-    @EJB
-    private CarBean carBean;
 
     /**
      * Get all assignments that haven't been finished yet.

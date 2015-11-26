@@ -25,7 +25,9 @@ public class CarOverviewManagedBean implements Serializable {
 
     private List<Car> cars;
 
-    /** Initializes the service after bean injection. */
+    /**
+     * Initializes the service after bean injection.
+     */
     @PostConstruct
     public void init() {
         if (cars == null) {

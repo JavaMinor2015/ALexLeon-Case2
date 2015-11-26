@@ -113,9 +113,7 @@ public class CustomerManagedBean implements Serializable {
      * @return the next page in the process
      */
     public String setTheCar(final String licensePlate) {
-        LOGGER.error(licensePlate);
         this.car = maintenanceProcess.getCar(licensePlate);
-
         return "addOrder";
     }
 

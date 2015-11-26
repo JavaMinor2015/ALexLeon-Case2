@@ -37,7 +37,7 @@ public class CarViewManagedBean implements Serializable {
      * @param car The car
      * @return the page to go to
      */
-    public String toCar(Car car) {
+    public String toCar(final Car car) {
         this.car = car;
         return "viewCarInfo.xhtml";
     }
@@ -48,7 +48,7 @@ public class CarViewManagedBean implements Serializable {
      * @param calendar The calender
      * @return the string
      */
-    public String toPresentableDate(Calendar calendar) {
+    public String toPresentableDate(final Calendar calendar) {
         return format.format(calendar.getTime());
     }
 
