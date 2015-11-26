@@ -27,7 +27,7 @@ public class Customer extends PersistentEntity {
 
     @Size(min = Rules.STREET_NUMBER_MIN_LENGTH, max = Rules.STREET_NUMBER_MAX_LENGTH)
     @NotNull
-    private String number;
+    private String streetNumber;
 
     @ValidZipCode(message = "Zip code not in correct format!")
     @NotNull

@@ -43,7 +43,7 @@ public class CustomerTest {
         Customer validCustomer = Customer.builder()
                 .city("Dordrecht")
                 .email("me@company.com")
-                .number("4A")
+                .streetNumber("4A")
                 .phone("01234567891")
                 .streetName("Streetlane")
                 .zipCode("4942DM")
@@ -56,7 +56,7 @@ public class CustomerTest {
         Customer customer = new Customer();
         customer.setCity("Dordrecht");
         customer.setEmail("me@company.com");
-        customer.setNumber("4A");
+        customer.setStreetNumber("4A");
         customer.setPhone("01234567891");
         customer.setStreetName("Streetlane");
         customer.setZipCode("4942DM");
@@ -110,16 +110,16 @@ public class CustomerTest {
                 (Rules.STREET_NUMBER_MAX_LENGTH + 1)};
         for (String invalid : invalids) {
             // through builder
-            Customer invalidCustomer = Customer.builder().number(invalid)
+            Customer invalidCustomer = Customer.builder().streetNumber(invalid)
                     .build();
             assertViolation(invalidCustomer);
 
             // through setter
-            invalidCustomer.setNumber(invalid);
+            invalidCustomer.setStreetNumber(invalid);
             assertViolation(invalidCustomer);
 
             // ensure that the value is still present despite violation
-            assertThat(invalidCustomer.getNumber(), is(invalid));
+            assertThat(invalidCustomer.getStreetNumber(), is(invalid));
         }
     }
 
@@ -202,7 +202,7 @@ public class CustomerTest {
         Customer.builder()
                 .city("Dordrecht")
                 .email("me@companu.com")
-                .number("5A")
+                .streetNumber("5A")
                 .phone("01234567890")
                 .streetName("My Street")
                 .zipCode("4942AM")
