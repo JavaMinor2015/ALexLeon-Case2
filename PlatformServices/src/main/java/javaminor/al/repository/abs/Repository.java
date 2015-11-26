@@ -28,7 +28,7 @@ public abstract class Repository<T> {
 
     private static final Logger LOGGER = LogManager.getLogger(Repository.class.getName());
 
-    @PersistenceContext(unitName = "GMSDerbyPersist")
+    @PersistenceContext(unitName = "GMSOraclePersist")
     private EntityManager em;
 
     /**
